@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+  form page
+{% endblock title %}
+
+
+{% block content %}
+  
+<section id="formss">
+    <div class="row">
+        
+        {% if rents %}
+        <div class="col-md-5 mx-auto">
+              
+            <!-- <div class="card">
+
+                <div class="card-header text-center">
+                    <h3>Register to Hier</h3>
+                </div>
+                <div class="card-body">
+
+
+                    <form action="">
+                        
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="surname" placeholder="surname" name="" required>
+                            <label for="surname">surname</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="firstname" placeholder="firstname" name="" required>
+                            <label for="firstname">firstname</label>
+                        </div>
+                        <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="midname" placeholder="midlename" name="">
+                            <label for="firstname">midlename</label>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="dob">Date of birth</label>
+                            <input type="date" name="dt" id="dat">
+                        </div>
+                        <label for="comment">Address:</label>
+                        <textarea class="form-control" rows="2" id="address" name="text"></textarea>
+                        
+                       <hr>
+                        <div class="d-grid my-3">
+                            <button class="btn btn-success"> Submmite</button>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+       
+         <form action="" method="post" >
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="d-grid my-3">
+                <button type="submit" class="btn btn-success">Submit your Order</button>
+            </div>
+         </form>       
+       
+       
+       
+        </div>
+            {% else %}
+              <p class="lead display-3"></p>
+            {% endif %}
+            
+    </div>
+</section>
+
+
+{% endblock content %}

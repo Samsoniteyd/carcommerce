@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}
+  product page
+{% endblock title %}
+
+{% block content %}
+
+<section id="product">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href=" {% url 'index' %} ">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Product</li>
+    </ol>
+  </nav>
+  <div class="container">
+    <div class="row">
+{% if product %}
+<h2 class="display-2 text-center my-2">product review</h2>
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <img src="{{product.image.url}}" alt="" class="card-img">
+            <p class="lead"> {{product.description|truncatewords:13}} </p>
+            
+            <h5> {{product.created_at}} </h5>
+
+            <div class="d-flex justify-content-between">
+              <a href="" class="btn btn-success">Add to cart</a>
+              <a href="{% url 'more' product.id %}" class="btn btn-dark">more</a>
+            </div>
+    </div>
+  </div>
+</div>
+
+  
+{% else %}
+  <p class="lead">no product yet</p>
+{% endif %}
+
+
+
+    
+</section>
+  
+{% endblock content %}

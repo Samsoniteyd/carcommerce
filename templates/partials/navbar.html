@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg bg-success navbar-light sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Home of cars</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'rent' %}">RENT</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Users
+            </a>
+            <ul class="dropdown-menu">
+
+                {% if request.user.is_authenticated %}
+                <li><a class="dropdown-item" href=" {% url 'logout' %} ">Logout</a></li>
+                <li><a class="dropdown-item" href=" {% url 'dashboard' %} ">Dashboard</a></li>
+                  
+                {% else %}
+                <li><a class="dropdown-item" href=" {% url 'login' %} ">Login</a></li>
+                <li><a class="dropdown-item" href=" {% url 'register' %} ">Register</a></li>
+                  
+                
+                {% endif %}
+                
+            </ul>
+          </li>
+          <li class="nav-item"> <a href=" {% url 'mycart' %} " class="nav-link text-dark"> <i class="bi bi-cart-fill"> <span class="badge bg-danger">0</span> </i> </a>
+           </li>
+        </ul>
+        
+        <!-- search  -->
+        <!-- search  -->
+        <div class="search w-30 py-auto">
+          <form action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text"  name="search_word" class="form-control" placeholder="search......">
+              <span class="input-group-text"> <i class="bi bi-search"></i> </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}
+  index page
+{% endblock title %}
+
+{% block content %}
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 1"></button>
+ 
+
+    </div>
+    <div class="carousel-inner">
+       {% if sliders %}
+        {% for slid in sliders  %}
+        <div class="carousel-item active">
+        <img src=" {{slid.slider.url}}" class="d-block w-100 h-50" alt="cars">
+        </div>              
+        {% endfor %}
+        
+       {% else %}
+       
+        <p class="lead bg-danger">no slider at the moment</p>
+       {% endif %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+  <!-- category  -->
+<!-- category  -->
+
+<section id="category" class="py-4">
+    <div class="intro text-center">
+      <h4 class="display-4">category</h4>
+      <p class="lead">welcome</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% if category %}
+        {% for cat in category  %}
+        <div class="col-md-3">
+          <a href="{% url 'category' cat.id  %}" class="text-decoration-none">
+            <div class=" overflow-hidden">
+            <img src=" {{cat.image.url}} " alt=" {{cat.title}} " class="img-fluid">
+          </div>
+          <h5 class="text-center"> {{cat.title |title}} </h5>
+        </a>
+        </div>
+        {% endfor %}
+          
+        {% else %} 
+          <p class="lead p-3 bg-danger text-white">no category</p>
+        {% endif %}
+        
+  
+      </div>
+    </div>
+
+
+
+
+    <!-- paginator  -->
+      <!-- paginator  -->
+      <div class="col-md-5">
+
+        <ul class="pagination">
+          {% if paginator.previous %}
+          <li class="page-item"><a class="page-link" href="?page={{paginator.previous_page_number}}">previous</a></li>
+          {% else %}
+          <li class="page-item" disabled> <a class="page-link">precious</a></li>
+
+          {% endif %}
+
+          {% for item in paginator.page_range  %}
+            {% if item == paginator.number %}
+            <li class="page-item "><a class="page-link" href=""> {{item}} </a> </li>
+
+            {% else %}
+            <li class="page-item active"><a class="page-link" href="?page={{item}}"> {{item}} </a> </li>
+
+            {% endif %}
+            
+          {% endfor %}
+
+          {% if paginator.next %}
+          <li class="page-item" > <a class="page-link" href="?page={{paginator.next_page_number}}">next</a></li>
+        
+          {% else %}
+          <li class="page-item" disabled > <a class="page-link" >next</a></li> 
+          {% endif %}
+          
+          
+        </ul>
+      </div>
+
+
+  </section>
+
+
+  <!-- product  -->
+  <!-- product  -->
+
+  <section id="category" class="py-4">
+    <div class="intro text-center">
+      <h4 class="display-4">Latest cars</h4>
+      <p class="lead">welcome</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% if product %}
+        {% for pro in product  %}
+        <div class="col-md-4">
+          <a href="{% url 'product' pro.id  %}" class="text-decoration-none">
+            <div class=" overflow-hidden w-100 ">
+            <img src=" {{pro.image.url}} " alt=" {{pro.title}} " class="img-fluid">
+          </div>
+          <!-- <h5 class="text-center"> {{pro.title |title}} </h5>  -->
+        </a>
+      </div>
+      {% endfor %}
+      
+      {% else %} 
+      <p class="lead p-3 bg-danger text-white">no category</p>
+      {% endif %}
+      
+      <div class="brief d-grid">
+        <a href="{% url 'brand' %}" class="btn btn-success">view all products</a>
+      </div>
+  
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

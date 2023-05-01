@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+  category page
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="category">
+
+    <h3 class="display-4 my-2 text-center"> {{hd.title}} </h3>
+    <div class="container">
+        <div class="row">
+    
+            {% if product %}
+            {% for item in product %}
+            <div class="col-md-3 my-2 ">
+                <div class="card">
+                    <div class="card-header display-5 text-center">{{item.title|title}} </div>
+                    <div class="card-body">
+                        <img src="{{item.image.url}}" alt="" class="card-img"> 
+                        <p class="lead"> {{item.description}} </p>
+                        
+    
+                    </div>
+                </div>
+            </div>
+    
+            {% endfor %}
+    
+              
+            {% else %}
+             <p class="lead bg-warning">no product in this cartegory yet please try again later</p> 
+            {% endif %}
+            
+        </div>
+    </div>
+
+</div>
+  
+
+
+
+
+
+{% endblock content %}

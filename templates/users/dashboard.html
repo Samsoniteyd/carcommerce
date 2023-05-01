@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Dashboard
+{% endblock title %}
+
+
+{% block content %}
+
+<section id="dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header mb-3">Welcome <strong><H4> {{profile.username|title}} </H4></strong> </div>
+                        <p class="lead my-2">
+                            {{profile.address}}
+                        </p>
+                        {% if profile.profile_pix %}
+                          
+                          <div class=" w-50 mx-auto p-5 h-50 overflow-hidden">
+                            <img src="{{profile.profile_pix.url}}"  class="img-fluid rounded-circle" alt="{{profile.username}}">
+                        </div>
+                        {% else %}
+                            <div class=" w-50 mx-auto p-5 h-50 overflow-hidden">
+                              <img src="{% static 'image/avarta.jpg' %}"  class="img-fluid rounded-circle" alt="">
+                          </div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"> {{profile.fullname}} </li>
+                                <li class="list-group-item">{{profile.username}}</li>
+                                <li class="list-group-item">{{profile.email}}</li>
+                            
+                                <li class="list-group-item">
+                                    <a href=" {% url 'update' %} " class="btn btn-dark list-group-link">Update</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+  CARS FOR RENT
+{% endblock title %}
+
+
+{% block content %}
+  
+
+<section id="car">
+    <div class="container">
+        <div class="row">
+
+            {% if rent %}
+
+            {% for item in rent %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header text-center">{{ item.title }}
+                    </div>
+                    <div class="card-body">
+                        <img src=" {{item.image.url }} " alt="" class="img-fluid" >
+                        <h4> {{item.description}} </h4>
+                        <div class="d-grid book">
+
+                            <a href="{% url 'form' item.id %}" class="btn btn-success">BOOK NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+            {% endfor %}
+              
+            {% else %}
+              <p class="lead display-3 bg-warning">sorry no car for renting this time</p>
+            {% endif %}
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

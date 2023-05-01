@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{%load humanize%}
+{% block title %}
+  brand page
+{% endblock title %}
+
+{% block content %}
+
+<section id="brand">
+  <div class="container">
+    <div class="row">
+        <h2 class="display-2 text-center my-2">All Brands</h2>
+{% if paginator %}
+{% for product in paginator  %}
+  
+<div class="col-md-3">
+  <div class="card">
+        <div class="card-header text-center"> {{product.title}} </div>
+            <div class="card-body">
+            <img src="{{product.image.url}}" alt="" class="img-fluid">
+            <p class="lead"> {{product.description|truncatewords:13}} </p>
+            
+            <h5> {{product.created_at}} </h5>
+
+            <div class="d-flex justify-content-between">
+              <a type="submit" data-product={{product.id}}  data-action="add" href=" {% url 'addtocart' product.id %} " class="btn btn-success add-btn update-cart">Add to cart</a>
+              <a href=" {% url 'more' product.id %}" class="btn btn-dark">more</a>
+            </div>
+        </div>
+  </div>
+</div>
+{% endfor %}
+
+  
+{% else %}
+  <p class="lead">no product yet</p>
+{% endif %}
+
+
+<!-- pagination  -->
+<!-- pagination  -->
+
+<div class="col-md-5">
+  <ul class="pagination">
+      {% if paginator.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{paginator.previous_page_number}}">previous</a></li>
+      
+      
+      {% else %}
+      <li class="page-item" disabled> <a class="page-link">precious</a></li>
+      
+      {% endif %}
+      {% for item in paginator.paginator.page_range  %}
+      {% if item == paginator.number %}
+      <li class="page-item active"><a class="page-link" href=""> {{item}} </a> </li>
+      
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{item}}"> {{item}} </a> </li>
+      
+      {% endif %}
+      
+      {% endfor %}
+      
+      {% if paginator.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{paginator.next_page_number}}">next</a></li>
+      
+      {% else %}
+      <li class="page-item" disabled> <a class="page-link">next</a></li>
+      
+      {% endif %}           
+  </ul>
+</div>
+    
+
+
+
+
+
+    
+</section>
+  
+{% endblock content %}
