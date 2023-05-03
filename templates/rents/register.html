@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block title %}
   register page
@@ -9,66 +10,105 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-     <div class="col-md-6">
+
+<section id="details">
     
-         <div class="card">
-         
-                        <div class="card-header text-center">
-                            <h3>Register to Hier</h3>
+</section>
+
+
+
+
+<section id="register">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header ">
+                        <div class="d-flex justify-content-between">
+                            <p class="lead">  {{ item.title }}</p>
+                            <p class="lead"> {{item.capacity}} </p>
+                            <p class="lead"> {{item.fuel}} </p>
                         </div>
-                        <div class="card-body">
-         
-         
-                            <form action="" method="post">
-                                
-                                <div class="form-floating mb-3 mt-3">
-                                    <input type="text" class="form-control" id="surname" placeholder="surname" name="" required>
-                                    <label for="surname">surname</label>
-                                </div>
-                                <div class="form-floating mb-3 mt-3">
-                                    <input type="text" class="form-control" id="firstname" placeholder="firstname" name="" required>
-                                    <label for="firstname">firstname</label>
-                                </div>
-                                <div class="form-floating mb-3 mt-3">
-                                    <input type="text" class="form-control" id="midname" placeholder="midlename" name="">
-                                    <label for="firstname">midlename</label>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label for="dob">Date of birth</label>
-                                    <input type="date" name="dt" id="dat">
-                                </div>
-                                <label for="comment">Address:</label>
-                                <textarea class="form-control" rows="2" id="address" name="text"></textarea>
-                                <div class="mb-3 mt-3">
-                                 <label for="dob">Date of Booking</label>
-                                 <input type="date" name="bk" id="dat">
-                             </div>
-                                <div class="mb-3 mt-3">
-                                 <label for="dob">Date of return</label>
-                                 <input type="date" name="rt" id="dat">
-                             </div>
-                             <div class="mb-3 mt-3">
-                              <label for="dob">Total days</label>
-                              <input type="text" name="dy" id="dat">
-                             </div>
-                             <div class="mb-3 mt-3">
-                             <label for="dob">Total amount</label>
-                             <input type="text" name="at" id="dat">
-                                 </div>
-                                     </div>
-                                     <hr>
-                                     <div class="d-grid my-3">
-                                         <button class="btn btn-success"> Submmite</button>
-                                     </div>
-                                     </div>
-                             </div>
-                       </form>
                     </div>
-     </div>
+                    <div class="card-body">
+                        <img src=" {{item.image.url }} " alt="" class="img-fluid" >
+                        <div class="d-flex">
+                            <h3> &#8358{{item.amount}}/day </h3>
+                        </div>
+                       
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid book">
+    
+                            <a href="{% url 'form' item.id %}" class="btn btn-success">BOOK NOW</a>
+                        </div>
+
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+         <div class="col-md-6">
+        
+             <div class="card">
+             
+                            <div class="card-header text-center">
+                                <h3>Register to Hier</h3>
+                            </div>
+                            <div class="card-body">
+             
+             
+                                <form action="" method="post">
+                                    
+                                    <div class="form-floating mb-3 mt-3">
+                                        <input type="text" class="form-control" id="surname" placeholder="surname" name="" required>
+                                        <label for="surname">surname</label>
+                                    </div>
+                                    <div class="form-floating mb-3 mt-3">
+                                        <input type="text" class="form-control" id="firstname" placeholder="firstname" name="" required>
+                                        <label for="firstname">firstname</label>
+                                    </div>
+                                    <div class="form-floating mb-3 mt-3">
+                                        <input type="text" class="form-control" id="midname" placeholder="midlename" name="">
+                                        <label for="firstname">midlename</label>
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="dob">Date of birth</label>
+                                        <input type="date" name="dt" id="dat">
+                                    </div>
+                                    <label for="comment">Address:</label>
+                                    <textarea class="form-control" rows="2" id="address" name="text"></textarea>
+                                    <div class="mb-3 mt-3">
+                                     <label for="dob">Date of Booking</label>
+                                     <input type="date" name="bk" id="dat">
+                                 </div>
+                                    <div class="mb-3 mt-3">
+                                     <label for="dob">Date of return</label>
+                                     <input type="date" name="rt" id="dat">
+                                 </div>
+                                 <div class="mb-3 mt-3">
+                                  <label for="dob">Total days</label>
+                                  <input type="text" name="dy" id="dat">
+                                 </div>
+                                 <div class="mb-3 mt-3">
+                                 <label for="dob">Total amount</label>
+                                 <input type="text" name="at" id="dat">
+                                     </div>
+                                         </div>
+                                         <hr>
+                                         <div class="d-grid my-3">
+                                             <button class="btn btn-success"> Submmite</button>
+                                         </div>
+                                         </div>
+                                 </div>
+                           </form>
+                        </div>
+         </div>
+        </div>
+    </div>
+</section>
+
   
 {% endblock content %}
 

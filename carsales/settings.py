@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'calculation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
-    'rents.apps.RentsConfig'
+    'rents.apps.RentsConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,8 @@
-from django.conf import settings 
- 
 
-from django.template import RequestContext
+from django.conf import settings
+from django.template import RequestContext 
+
+
 
 class Paystack:
     PAYSTACK_SECRETE_KEY = settings.PAYSTACK_SECRETE_KEY

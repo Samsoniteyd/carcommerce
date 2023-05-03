@@ -12,15 +12,23 @@ class Rentage(models.Model):
         return self.title
 
 
+FUEL= (
+    ('petrol', 'petrol'),
+    ('diesel', 'diesel')
+)
+
 class Brand(models.Model):
     category =  models.ForeignKey(Rentage, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='brand', null=True)
     description = models.TextField( max_length=255)
     discount = models.PositiveIntegerField( null=True, default=0, blank=True )
-    amount = models.IntegerField(blank=True, null=True)
+    amount = models.IntegerField(null=True)
     inventory  = models.PositiveIntegerField()
     created_at  = models.DateField( auto_now_add= True)
+    fuel = models.CharField(max_length=50, choices=FUEL, null=True)
+    capacity = models.CharField(max_length=50, null=True)
+    
 
 
 

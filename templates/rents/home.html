@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}
+  home page
+{% endblock title %}
+
+
+{% block content %}
+
+<section id="home">
+    <div class="container">
+        <div class="row">
+        {% if cat %}
+        {% for item in cat %}
+          
+            <div class="col-md-3">
+                <a href="{% url 'rent' item.id %}">
+                    <div class="card">
+                        <div class="card-header"> {{item.title}} </div>
+                        <div class="card-body">
+                            <img  class="img-fluid card-img d-flex" src="{{item.image.url}}" alt="">
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            
+            {% else %}
+            <p class="lead">no category for now</p>
+            {% endif %}
+        </div>
+        
+    </div>
+</section>
+  
+{% endblock content %}
+
+

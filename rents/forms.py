@@ -1,5 +1,6 @@
 from django import forms
 from . models import Order
+ 
 
 
 
@@ -11,8 +12,8 @@ class DateInput(forms.DateInput):
 
 class RentForm(forms.ModelForm):
 
-    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-
+    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'})),
+   
     class Meta:
         model = Order
         fields= ['Firstname', 'Secondname', 'mobile', 'email', 'address', 'date_of_booking', 'date_of_return', 'total_days', 'total_amount', 'payment_method']
