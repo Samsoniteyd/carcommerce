@@ -239,6 +239,7 @@ def checkout(request):
 
 def payment(request, id):
     orders = Order.objects.get(id=id)
+ 
     context ={
         'order': orders,
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY

@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
-    'rents.apps.RentsConfig',
+    'carrents.apps.CarrentsConfig'
 ]
 
 MIDDLEWARE = [

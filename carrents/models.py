@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+from django.db import models
+from datetime import date
+# Create your models here.
 
 class Rentage(models.Model):
     title = models.CharField(max_length=255)
@@ -58,28 +61,35 @@ PAYMENT_METHOD=(
 
 class Order(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    Firstname = models.CharField(max_length=255)
-    Secondname = models.CharField(max_length=255)
+    surname= models.CharField(max_length=255, null=True)
+    firstname = models.CharField(max_length=255, null=True)
+    middlename = models.CharField(max_length=255, null=True)
     address  = models.TextField()
-    email = models.EmailField(max_length=255, unique=True)
-    mobile = models.CharField(max_length=50)
-    total= models.CharField(max_length=255, null=True)
+    email= models.EmailField(max_length=255)
+    phone = models.CharField(max_length=50)
     order_status = models.CharField(max_length=255, choices=ORDER_STATUS, default='pending')
-    date_of_booking = models.DateField(blank=True, null=True)
-    date_of_return = models.DateField(blank=True, null=True)
-    total_days  = models.IntegerField(null=True)
-    amount = models.IntegerField(blank=True, null=True)
-    total_amount = models.IntegerField(blank=True, null=True)
+    date_of_birth = models.DateTimeField(blank=True, null=True)
+    booking = models.DateField(blank=True, null=True)
+    returnbooking = models.DateField(blank=True, null=True)
+    # total_days  = models.IntegerField(null=True, blank=True)
+    
+    # total_amount = models.IntegerField(blank=True, null=True)
     isAvailable = models.BooleanField(default=True)    
     payment_method = models.CharField(max_length=255, choices=PAYMENT_METHOD, default='paystack')
     ref = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self) ->str:
+        return self.middlename
 
-
-
-
-    def __str__(self):
-        return f'{self.order_status}::: {self.id}'
-
-   
+    @property
+    def getnumdays(self):
+        dif =(self.returnbooking - self.booking).days
+        return dif
+    
+    @property
+    def gettotalamount(self):
+        amount= self.brand.amount
+        total_amount = ((self.returnbooking - self.booking).days) * amount
+        return total_amount
+        

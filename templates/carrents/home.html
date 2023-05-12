@@ -14,15 +14,15 @@
         {% if cat %}
         {% for item in cat %}
           
-            <div class="col-md-3">
-                <a href="{% url 'rent' item.id %}">
+            <div class="col-md-4">
+                <a href="{% url 'rent' item.id %}" class="text-decoration-none" >
                     <div class="card">
-                        <div class="card-header"> {{item.title}} </div>
+                        <div class="card-header text-center"> {{item.title}} </div>
                         <div class="card-body">
                             <img  class="img-fluid card-img d-flex" src="{{item.image.url}}" alt="">
                         </div>
                         <div class="card-footer">
-                            
+                            <h3>Enjoy your choice</h3>
                         </div>
                     </div>
                 </a>
@@ -38,5 +38,8 @@
 </section>
   
 {% endblock content %}
+
+
+
 
 

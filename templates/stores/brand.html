@@ -23,6 +23,7 @@
             <h5> {{product.created_at}} </h5>
 
             <div class="d-flex justify-content-between">
+              
               <a type="submit" data-product={{product.id}}  data-action="add" href=" {% url 'addtocart' product.id %} " class="btn btn-success add-btn update-cart">Add to cart</a>
               <a href=" {% url 'more' product.id %}" class="btn btn-dark">more</a>
             </div>
@@ -40,7 +41,7 @@
 <!-- pagination  -->
 <!-- pagination  -->
 
-<div class="col-md-5">
+<div class="col-md-12">
   <ul class="pagination">
       {% if paginator.has_previous %}
       <li class="page-item"><a class="page-link" href="?page={{paginator.previous_page_number}}">previous</a></li>

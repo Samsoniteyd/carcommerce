@@ -21,14 +21,14 @@
                 <div class="card">
                     <div class="card-header ">
                         <div class="d-flex justify-content-between">
-                            <p class="lead">  {{ item.title }}</p>
-                            <p class="lead"> {{item.capacity}} </p>
-                            <p class="lead"> {{item.fuel}} </p>
+                            <p class="lead">  {{ item.title|title }}</p>
+                            <p class="lead"> {{item.capacity|title }} </p>
+                            <p class="lead"> {{item.fuel|title }} </p>
                         </div>
                     </div>
                     <div class="card-body">
                         <img src=" {{item.image.url }} " alt="" class="img-fluid" >
-                        <div class="d-flex">
+                        <div class="d-flex money">
                             <h3> &#8358; {{item.amount|intcomma}}/day </h3>
                         </div>
                        
@@ -36,7 +36,7 @@
                     <div class="card-footer">
                         <div class="d-grid book">
     
-                            <a href="{% url 'form' item.id %}" class="btn btn-success">BOOK NOW</a>
+                            <a href="{% url 'form' item.id %}" class="btn btn-success book">BOOK NOW</a>
                         </div>
 
                     </div>

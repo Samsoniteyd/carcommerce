@@ -1,0 +1,124 @@
+
+/* navbar  */
+/* navbar  */
+.navbar{
+    background-color: rgb(240, 201, 149)!important;
+}
+
+/* store brand section  */
+/* store brand section  */
+
+#brand .card-header{
+    color:black;
+    background-color: bisque;
+
+}
+
+#brand .card{
+    height: 60vh;
+    width: 20vw;
+    border-radius: 36px;
+background: linear-gradient(225deg, #fdfafa, #faf8f8);
+box-shadow: 
+             3px 1px 10px #969595;
+}
+#brand .card .update-cart{
+    background-color: bisque;
+    border: 0rem;
+    color: black;
+
+}
+#brand .card-header{
+    margin-top: 0rem;
+    border-radius: 36px;
+    
+
+}
+
+#brand .card img{
+    height: 20vh;
+    width: 20vw;
+}
+#brand .pagination{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    
+}
+
+#brand .page-link{
+color: black;
+background-color: bisque;
+border-radius: 1rem;
+border-color: rgb(250, 162, 47);
+}
+
+#brand .active{
+    background-color: rgb(109, 96, 81);
+}
+
+/* rent app  */
+/* rent home section  */
+/* rent home section  */
+
+#home .card{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: 60vh;
+    width: 20vw;
+    border-radius: 36px;
+background: linear-gradient(225deg, #fdfafa, #faf8f8);
+box-shadow: 
+             3px 1px 10px #969595;
+}
+
+#home .card-header{
+
+    margin-top: 0.1rem;
+    border-radius: 36px;
+}
+
+#home .card img{
+    height: 20vh;
+    width: 20vw;
+}
+
+/* cars for rent section  */
+/* cars for rent section  */
+
+#car .card{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    height: 60vh;
+    width: 25vw;
+    border-radius: 36px;
+background: linear-gradient(225deg, #fdfafa, #faf8f8);
+box-shadow: 3px 1px 10px #969595;
+
+}
+
+#car .card .money h3{
+    margin: auto;
+}
+
+#car .card img{
+    height: 25vh;
+    width: 22vw;
+    margin-top: 1rem;
+   margin-left: 0rem;
+}
+
+#car .card .book{
+    width: 17vw;
+    margin: auto;
+    background-color: bisque;
+    border: 0rem;
+    color: black;
+    background: linear-gradient(225deg, bisque, bisque);
+box-shadow: 3px 1px 10px #969595;
+
+
+}
+
+
+

@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}
+  form page
+{% endblock title %}
+
+
+{% block content %}
+  
+<section id="formss">
+
+    <div class="container">
+        <div class="row"> 
+            {% if rents %}
+
+                <div class="col-md-6">
+                    <div class="card gap-2">
+                        <div class="card-header ">
+                            <div class="d-flex justify-content-between">
+                                <p class="lead">  {{ rents.title }}</p>
+                                <p class="lead"> {{rents.capacity}} </p>
+                                <p class="lead"> {{rents.fuel}} </p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <img src=" {{rents.image.url }} " alt="" class="img-fluid" >
+
+                            <p class="lead display-7"> {{rents.description}} </p>
+                            <div class="d-flex">
+                                <h3> &#8358; {{rents.amount|intcomma}}/day </h3>
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                 </div>
+                    
+                    {% else %}
+                    <p class="lead">no noo </p>
+                    {% endif %} 
+
+
+                    <!-- <div class="col-md-6 mx-auto">
+                        <div class="card">
+
+                            <form action="" method="post">
+                                        {% csrf_token %}
+                                
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="surname" placeholder="surname" name="surname" required>
+                                    <label for="surname">surname</label>
+                                </div>
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="firstname" placeholder="firstname" name="firstname" required>
+                                    <label for="firstname">firstname</label>
+                                </div>
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="midname" placeholder="midlename" name="middlename">
+                                    <label for="firstname">midlename</label>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="dob">Date of birth</label>
+                                    <input type="date" name="date_of_birth" id="dat">
+                                </div>
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="phone" placeholder="phonenumber" name="phone">
+                                    <label for="phone">phone number</label>
+                                    
+                                </div>
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="email" class="form-control" id="email" placeholder="email" name="email">
+                                    <label for="email">email</label>
+                                    
+                                </div>
+                                <label for="comment">Address:</label>
+                                <textarea class="form-control" rows="2" id="address" name="text"></textarea>
+                                <div class="mb-3 mt-3">
+                                <label for="dob">Date of Booking</label>
+                                <input type="date" name="booking" id="dat">
+                            </div>
+                                <div class="mb-3 mt-3">
+                                <label for="dob">Date of return</label>
+                                <input type="date" name="returnbooking" id="dat">
+                            </div>
+                            
+                                    </div>
+                                    <hr>
+                                    <div class="d-grid my-3">
+                                        <button class="btn btn-success"> Submmite</button>
+                                    </div>
+                                    </div>
+                            </div>
+                    </form>
+                    </div> -->
+                    
+                                     
+                    <div class="col-md-6">
+                        <form action="" method="post">
+                            {% csrf_token %} 
+                            {{form.as_p}}
+        
+                            <div class="d-grid my-3">
+                                <button type="submit" class="btn btn-success">Proceed To Payment</button>
+                            </div>
+                        </form>
+                    </div>
+        </div>
+
+    </div>
+
+
+</section> 
+
+
+{% endblock content %}
