@@ -50,13 +50,13 @@ def category(request, id):
 
 # product 
 # product 
-def product(request, id):
-    products = Product.objects.get(id=id)
-    context={
-        'product': products     
+# def product(request, id):
+#     products = Product.objects.get(id=id)
+#     context={
+#         'product': products     
 
-    }
-    return render(request, 'stores/product.html', context)
+#     }
+#     return render(request, 'stores/product.html', context)
 
 
  # brands 
@@ -71,7 +71,7 @@ def brands(request):
         page_list = pagination.get_page(page_number)
 
         context={
-             'brand': brand,
+            #  'brands': brand,
              'paginator': page_list
         }
         return render(request, 'stores/brand.html', context) 
@@ -164,7 +164,6 @@ def mycart(request):
          'cart': cart_item  
     }      
           
-
     return render(request, 'stores/mycart.html', context)
 
 
@@ -207,11 +206,11 @@ def checkout(request):
     if request.user.is_authenticated and request.user.profile:
         pass
     else:
-        return redirect('/user/login/?next=/checkout/')
+        return redirect('/users/login/?next=/checkout/')
     
     if request.method == 'POST':
         form = CheckoutForm(request.POST or None)
-        if form.is_valid():
+        if form.is_valid():                                               
             form = form.save(commit=False)
             form.cart = cart_obj
             form.amount = cart_obj.total

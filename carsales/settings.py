@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 
+
+
 # dotenv 
 
 from dotenv import load_dotenv
@@ -37,7 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'calculation',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +49,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
-    'carrents.apps.CarrentsConfig'
+    'carrents.apps.CarrentsConfig',
+    'carrents.booking_functions'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'stores.context_processors.categorys',
+                # 'stores.context_processors.allcarts',
             ],
         },
     },
@@ -140,8 +145,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #Email conf
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
 EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
 

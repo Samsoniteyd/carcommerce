@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,9 +12,12 @@ from django.conf import settings
 
 from django.contrib import messages
 
-from . forms import RegForm
+from django.core.mail import send_mail
 
 from datetime import datetime as dt
+
+from . forms import RegForm
+# from django.views.generic import ListView
 
 from . models import *
 # Create your views here.
@@ -47,7 +51,15 @@ def rent(request, id):
 
 def fri(request, id): 
      rent= Brand.objects.get(id=id)
-     
+     if request.user.is_authenticated and request.user.profile:
+       rent.customer = request.user.profile
+       rent.save()
+
+       messages.warning(request, "login to book")
+    #  else:
+    #   return redirect('/users/login/?next=/form/')
+
+     form= RegForm()
      if request.method == "POST":          
          form= RegForm(request.POST)
          if form.is_valid():
@@ -60,22 +72,82 @@ def fri(request, id):
              addr = form.cleaned_data.get ('address')
              book = form.cleaned_data.get ('booking')
              rbook = form.cleaned_data.get ('returnbooking')
-             rental= Order( surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook )
-             forms = form.save(commit=False)
-             forms.rental= rental
-             forms.save()  
-             return redirect('form')
-     else:
-         form= RegForm()           
+             
+
+             form = Order( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook )
+             
+             form.save()
+
+             order = form.id
+             
+             send_mail(
+             subject= 'registered',
+             message= f'{sname} hgshdgehjsduhsjklajhlahdfuifjkahuhfnjfhurdjnndjhsjk',
+             from_email= settings.EMAIL_HOST_USER,
+             recipient_list = [email],
+             fail_silently=False)
+         return redirect('payments', id=order) 
+            
+               
                
      context ={
          
          'form': form,
-         'rents':rent
-
+         'rents':rent,
+        
        }
      
-     return render(request, 'carrents/form.html', context )
+     return render(request, 'carrents/form.html', context)
+    
+    
+    
+
+# def fri(request, id): 
+
+#     #get particular brand
+#     rent= Brand.objects.get(id=id) 
+
+
+
+#     #create a brand id base on session
+#     brand_id =request.session.get('brand_id', None)
+
+#      #check if brand exists
+#     if brand_id:
+
+#             #check authentication
+#             if request.user.is_authenticated and request.user.profile:
+#                 rent.customer = request.user.profile
+#                 rent.save()
+#             else:
+#               return redirect('/user/login/?next=/payment/')
+
+#     if request.method == "POST":          
+                
+#                     sname = request.POST['surname']
+#                     fname = request.POST['firstname']
+#                     mname = request.POST['middlename']
+#                     dob = request.POST ['date_of_birth']
+#                     phn = request.POST['phone']
+#                     email= request.POST['email']
+#                     addr = request.POST['address']
+#                     book = request.POST['booking']
+#                     rbook = request.POST ['returnbooking']
+#                     rental= Order.objects.create( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook)
+#                     rental.save()
+#                     #  paymethod = rental.payment_method 
+#                     #  order= rental.id
+#                     #  if paymethod == 'Paystack':
+                             
+#                     return redirect('payment')  
+            
+#     context ={
+                    
+#                 #     #  'form': form,
+#                     'rents':rent
+
+#                 }
+#     return render(request, 'carrents/form.html', context)
 
 
 def reg(request, id):
@@ -85,18 +157,16 @@ def reg(request, id):
      }
      return render(request, 'carrents/register.html', context)
 
-def payment(request):
-    orders = Order.objects.all()
-    # days = orders.getnumdays
-    # amount = orders.gettotalamount
-    
+def payments(request, id):
+    orders = Order.objects.get(id=id)
+    # days = orders.getnumdays 
+    # amount = orders.gettotalamount 
+    messages.success(request, 'rent successful')
     context ={
-        'order': orders,
-        # 'days': days,
-        # 'amount': amount,
+        'item': orders,
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY
     }
-    return render(request, 'carrents/payment.html', context)
+    return render(request, 'carrents/payments.html', context)
 
 def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
     payment = get_object_or_404(Order, ref=ref)
@@ -106,37 +176,17 @@ def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
         messages.success(request, 'verification successful')
     else:
         messages.warning(request, 'verification failed')
-    return redirect('rent')    
+    return redirect('dashboard')    
+
+
+def booking_list(request):
+    return
 
 
 
 
 
 
-
-
-
-
-
-
-#   #  back = request.POST['brand']
-#         #  sname = request.POST['surname']
-#         #  fname = request.POST['firstname']
-#         #  mname = request.POST['middlename']
-#         #  dob = request.POST['date_of_birth']
-#         #  phn = request.POST['phone']
-#         #  email = request.POST['email']
-#         #  addr = request.POST['text']
-#         #  book = request.POST['booking']
-#         #  rbook = request.POST['returnbooking']
-
-#         #  if dob >= date(2003-9-1):
-#         #      messages.warning(request,'you are not allowed to rent a car')
-#         #      return redirect('form')
-
-#         #  info = Order(brand=back,surname=sname,firstname=fname,middlename=mname,text=addr,email=email,phone=phn,date_of_birth=dob,booking=book,returnbooking=rbook)
-#         #  info.save()
-#         #  return redirect('payment')
 
 
 

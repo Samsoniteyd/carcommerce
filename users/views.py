@@ -62,7 +62,8 @@ def register(request):
 def loginuser(request):
 
     
-
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('uname')
         password = request.POST.get('passwd')
@@ -125,6 +126,7 @@ def update_profile(request):
     context= {
         'form': form
     }
+
 
     return render(request, 'users/update.html', context )
     

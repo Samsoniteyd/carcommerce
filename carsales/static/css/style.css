@@ -3,11 +3,66 @@
 /* navbar  */
 .navbar{
     background-color: rgb(240, 201, 149)!important;
+  
+}
+
+.navbar-collapse{
+    /* border: 2px solid red; */
+    margin-right: 4rem;
+    margin-left: 4rem;
+    padding-left: 6rem;
+
+}
+.navbar-nav{
+    justify-content: space-evenly;
+    /* border: 2px solid rgb(0, 4, 255); */
+    width: 70%;
+    
+}
+/* store index section  */
+/* store index section  */
+#all{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+#carouselExampleIndicators{
+    height: 20rem !important;
+    width: 60% !important;
+    margin-left: 20%;
+    /* border: 2px solid rgb(0, 4, 255); */
+
+}
+#carouselExampleIndicators .carousel-inner img{
+    height: 20rem !important;
+    width: 100% !important;
+    
+}
+
+/* category  */
+
+#category .container img{
+    height: 40vh;
+    width: 20vw;
+    border-radius: 40px;
+    background: linear-gradient(225deg, #4d4c4c, #575757);
+    box-shadow:  10px 20px 20px #313131;
+    /* overflow: hidden !important; */
+
+}
+
+#product .container img{
+    height: 45vh;
+    width: 25vw;
+    border-radius: 30px;
+    background: linear-gradient(225deg, #4d4c4c, #575757);
+    box-shadow:  10px 20px 20px #313131;
+    margin-top: 5rem;
 }
 
 /* store brand section  */
 /* store brand section  */
-
+#brand{
+    background-color: rgba(255, 178, 63, 0.959);
+}
 #brand .card-header{
     color:black;
     background-color: bisque;
@@ -57,19 +112,65 @@ border-color: rgb(250, 162, 47);
     background-color: rgb(109, 96, 81);
 }
 
+
+/* store category section  */
+/* store category section  */
+.category{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+.category .card-header{
+    color:black;
+    background-color: bisque;
+}
+
+.category .card{
+    height: 75vh;
+    width: 20vw;
+    /* border: 2px solid blue; */
+    border-radius: 36px;
+    background: linear-gradient(225deg, #fdfafa, #faf8f8);
+    box-shadow: 3px 1px 10px #969595;
+}
+
+.category .card-footer{
+    height: 2rem;
+    margin-bottom: 15%;
+}
+/* more section  */
+/* more section  */
+#more{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+/* search section  */
+/* search section  */
+#search{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+
+/* product section  */
+/* product section  */
+#product{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+
+/* mycart section  */
+/* mycart section  */
+#cart{
+    background-color: rgba(255, 178, 63, 0.959);
+}
+
 /* rent app  */
 /* rent home section  */
 /* rent home section  */
 
-#home .card{
+ #home .card{
     margin-top: 2rem;
     margin-bottom: 2rem;
     height: 60vh;
     width: 20vw;
     border-radius: 36px;
 background: linear-gradient(225deg, #fdfafa, #faf8f8);
-box-shadow: 
-             3px 1px 10px #969595;
+box-shadow: 3px 1px 10px #969595;
 }
 
 #home .card-header{
@@ -81,19 +182,19 @@ box-shadow:
 #home .card img{
     height: 20vh;
     width: 20vw;
-}
+} 
 
 /* cars for rent section  */
 /* cars for rent section  */
 
-#car .card{
+ #car .card{
     margin-top: 2rem;
     margin-bottom: 3rem;
     height: 60vh;
     width: 25vw;
     border-radius: 36px;
 background: linear-gradient(225deg, #fdfafa, #faf8f8);
-box-shadow: 3px 1px 10px #969595;
+box-shadow: 3px 1px 10px #000000;
 
 }
 
@@ -115,10 +216,17 @@ box-shadow: 3px 1px 10px #969595;
     border: 0rem;
     color: black;
     background: linear-gradient(225deg, bisque, bisque);
-box-shadow: 3px 1px 10px #969595;
+    box-shadow: 3px 1px 10px #969595;
 
 
 }
+
+
+#home{
+    border: 2px solid blue; 
+    background-color: rgba(255, 178, 63, 0.959);
+} 
+
 
 
 

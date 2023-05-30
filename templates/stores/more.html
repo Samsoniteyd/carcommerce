@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
            {% if mor %}            
-           <div class="col-md-6">
+           <div class="col-md-6 mx-auto">
                <div class="card">
                    <div class="card-header">
                    </div>
@@ -21,7 +21,7 @@
                        <h4> {{mor.inventory}} </h4>
                    </div>
                    <div class="card-footer d-grid">
-                    <a href="" class="btn btn-success">Add To Cart</a>
+                    <a href="{% url 'addtocart' mor.id %}" class="btn btn-success">Add To Cart</a>
                    </div>
                </div>
            </div>

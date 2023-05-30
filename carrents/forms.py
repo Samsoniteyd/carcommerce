@@ -5,9 +5,10 @@ from .models import Order
 
 class RegForm(forms.ModelForm):
     class Meta:
+        model = Order
 
         email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-        model = Order
+        
         fields=['surname', 'firstname', 'middlename','address', 'email', 'phone', 'date_of_birth', 'booking', 'returnbooking']
         widgets ={
             'surname':forms.TextInput(attrs={'class': 'form-control'}),

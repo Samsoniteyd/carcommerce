@@ -14,14 +14,19 @@
     
             {% if product %}
             {% for item in product %}
-            <div class="col-md-3 my-2 ">
+            <div class="col-md-3 my-5">
                 <div class="card">
                     <div class="card-header display-5 text-center">{{item.title|title}} </div>
                     <div class="card-body">
                         <img src="{{item.image.url}}" alt="" class="card-img"> 
                         <p class="lead"> {{item.description}} </p>
-                        
-    
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+              
+                            <a  href=" {% url 'addtocart' item.id %} " class="btn btn-success">Add to cart</a>
+                            <a href=" {% url 'more' item.id %}" class="btn btn-dark">more</a>
+                          </div>
                     </div>
                 </div>
             </div>
