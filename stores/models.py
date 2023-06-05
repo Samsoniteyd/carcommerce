@@ -18,6 +18,8 @@ class Category(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='category', null=True)
     created_at = models.DateField(auto_now_add=True)
+    quantity= models.PositiveIntegerField( null=True)
+
 
 
     def __str__(self):
@@ -53,7 +55,7 @@ class Cart(models.Model):
         return f'Cart:::: {str(self.total)}'
     
 
-class Cartitem(models.Model):
+class CartItem(models.Model):
     cart= models.ForeignKey(Cart, on_delete=models.CASCADE)
     product= models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity= models.PositiveIntegerField()
@@ -92,6 +94,7 @@ class Order(models.Model):
     order_status = models.CharField(max_length=50, choices= ORDER_STATUS, default='Pending')
     payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD, default='Paystack')
     payment_complete = models.BooleanField(default=False)
+    # verified = models.BooleanField(default=False)
     ref = models.CharField(max_length=255, null=True, blank=True)
 
 
@@ -126,8 +129,8 @@ class Order(models.Model):
             else:
                 self.payment_method = 'Cancel Payment'
 
-
             self.save()
+
         if self.payment_complete:
             return True
         return False                  

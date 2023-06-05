@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('DUMMY_KEY'))  
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
     'carrents.apps.CarrentsConfig',
-    'carrents.booking_functions'
+    # 'carrents.booking_functions'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'stores.context_processors.categorys',
-                # 'stores.context_processors.allcarts',
+                'stores.context_processors.allcart',
             ],
         },
     },
@@ -149,6 +150,23 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+
+
+#jazzmine
+JAZZMIN_SETTINGS = {
+    "site_title": "cars",
+    "site_header": "Home of cars",
+    "site_brand": "Quality cars",
+    "site_logo": "books/img/logo.png",
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    "welcome_sign": "Welcome to the library",
+    "copyright": "motex",
+    "search_model": ["auth.User", "auth.Group"],
+    "user_avatar": None,
+}
 
 
 #PAYSTACK

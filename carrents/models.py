@@ -5,6 +5,9 @@ import numpy as np
 from django.db import models
 from users.models import Profile
 from datetime import date
+import secrets
+
+from . paystack import Paystack
 # Create your models here.
 
 class Rentage(models.Model):
@@ -29,7 +32,7 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='brand', null=True)
     description = models.TextField( max_length=255)
     discount = models.PositiveIntegerField( null=True, default=0, blank=True )
-    amount = models.IntegerField(null=True)
+    amounts = models.IntegerField(null=True)
     inventory  = models.PositiveIntegerField()
     created_at  = models.DateField( auto_now_add= True)
     fuel = models.CharField(max_length=50, choices=FUEL, null=True)
@@ -76,13 +79,16 @@ class Order(models.Model):
     booking = models.DateField(blank=True, null=True)
     returnbooking = models.DateField(blank=True, null=True)
     total_days  = models.CharField(max_length=50, blank=True, null=True)
-    total_amount = models.CharField(max_length=50, blank=True, null=True)
+    amount = models.CharField(max_length=50, blank=True, null=True)
     isAvailable = models.BooleanField(default=True)    
     payment_method = models.CharField(max_length=255, choices=PAYMENT_METHOD, default='paystack')
+    payment_complete = models.BooleanField(default=False)
     ref = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
     
+    
+    def __str__(self):
+     return f'{self.order_status}::: {self.id}'
 
     def save(self,*args, **kwargs):
         self.total_days = 0
@@ -90,29 +96,46 @@ class Order(models.Model):
         booking = pd.to_datetime(self.booking).date()
         self.total_days = np.busday_count(booking,returnbooking)
 
-        self.total_amount= 0
-        total_amount = self.brand.amount * int( self.total_days)
-        self.total_amount = total_amount
+        self.amount= 0
+        amount = self.brand.amounts * int( self.total_days)
+        self.amount = amount
 
         super(Order,self).save(*args, **kwargs)
+
+    # def __str__(self) ->str:
+    #     return f'{self.firstname}::: {self.id}:::{self.booking}::::{self.returnbooking}'
+
+#  ref generate
+    # def save(self, *args, **kwargs):
+    #     while not self.ref:
+    #         ref =secrets.token_urlsafe(50)
+    #         obj_with_sm_ref = Order.objects.filter(ref=ref)
+    #         if not obj_with_sm_ref:
+    #             self.ref = ref
+    #     super().save(*args, **kwargs)
+
+    # #amount
+
+    # def amount_value(self)-> int:
+    #     return self.amount * 100     
+
+    #verification
+
+# def verify_payment(self):
+#     paystack = Paystack()
+#     status, result = paystack.verify_payment(self.ref, self.amount)
+#     if status:
+#             if result['total_amount'] / 100 == self.amount:
+#                 self.payment_complete = True
+#                 self.payment_method = 'Payment Received'
+#             else:
+#                 self.payment_method = 'Cancel Payment'
+
+
+#             self.save()
+#     if self.payment_complete:
+#             return True
+#     return False  
+
+
     
-    def __str__(self) ->str:
-        return f'{self.firstname}::: {self.id}:::{self.booking}::::{self.returnbooking}'
-
-
-
-
-
-
-
-    
-    
-
-    # def save(self, args,*kwargs):
-    #     dif =(self.returnbooking - self.booking).days
-    #     self.totaldays= dif.results
-    #     super(Order, self).save(args,kwargs)
-
-
-
-        

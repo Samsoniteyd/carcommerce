@@ -1,6 +1,6 @@
 
 from django.conf import settings
-from django.template import RequestContext 
+import requests
 
 
 
@@ -17,7 +17,7 @@ class Paystack:
         }
 
         url = self.base_url + path
-        response = RequestContext.get(url, headers=headers)
+        response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
             response_data = response.json()

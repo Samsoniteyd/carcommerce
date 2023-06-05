@@ -12,8 +12,8 @@
 <div class="row">
     <div class="col-md-5 mx-auto">
         <div class="card">
-            <div class="card-header">make payment of &#8358; {{item.total_days|intcomma}} </div>
-            <div>Days {{day}} X Amount {{item.total_amount}} =  {{item.total_amount|intcomma}} </div>
+            <div class="card-header">you are renting for {{item.total_days|intcomma}} days </div>
+            <div>Days {{day}} X Amount {{item.amount}} =  {{item.amount|intcomma}} </div>
             <div>  {{item.brand.title}} </div>
             <div>  {{item.brand.fuel}} </div>
             <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -30,26 +30,9 @@
 
 
 
-<script>
-    function paymentPaystack(){
-       let currency = 'NGN';
-       let ref = '{{item.ref}}';
-       let obj = {
-           key: '{{paystack_public_key}}',
-           email: '{{item.email}}',
-           amount: '{{item.amount_value}}',
-           ref: ref,
-           callback: function(response){
-               window.location.href="{% url 'verify-payment' item.ref %}"
-           }
-       }
-       if(Boolean(currency)){
-           obj.currency = currency.toUpperCase();
-       }
-       let handler = PaystackPop.setup(obj)
-       handler.openIframe();
-   }
-</script>
+
+
+
   
 {% endblock content %}
 
@@ -63,3 +46,37 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script>
+    function paymentPaystack(){
+       let currency = 'NGN';
+       let ref = '{{order.ref}}';
+       let obj = {
+           key: '{{paystack_public_key}}',
+           email: '{{order.email}}',
+           amount: '{{order.amount_value}}',
+           ref: ref,
+           callback: function(response){
+               window.location.href="{% url 'verify-payment' item.ref %}"
+           }
+       }
+       if(Boolean(currency)){
+           obj.currency = currency.toUpperCase();
+       }
+       let handler = PaystackPop.setup(obj)
+       handler.openIframe();
+   }
+</script> -->

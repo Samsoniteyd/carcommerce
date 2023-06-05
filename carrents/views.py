@@ -50,12 +50,15 @@ def rent(request, id):
 
 
 def fri(request, id): 
+    #  rent_id = request.session.get('rent_id', None)
+    #  rent= Brand.objects.get(id=rent_id)
      rent= Brand.objects.get(id=id)
      if request.user.is_authenticated and request.user.profile:
        rent.customer = request.user.profile
        rent.save()
+     else:
+       return redirect('/user/login/?next=/payments/')
 
-       messages.warning(request, "login to book")
     #  else:
     #   return redirect('/users/login/?next=/form/')
 
@@ -72,14 +75,15 @@ def fri(request, id):
              addr = form.cleaned_data.get ('address')
              book = form.cleaned_data.get ('booking')
              rbook = form.cleaned_data.get ('returnbooking')
+             paymethod = form.cleaned_data.get ('payment_method')
              
 
-             form = Order( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook )
-             
+             form = Order( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook, payment_method=paymethod )
              form.save()
 
              order = form.id
-             
+            #  if paymethod == "Paystack":
+            #     return redirect('payments', id=order)
              send_mail(
              subject= 'registered',
              message= f'{sname} hgshdgehjsduhsjklajhlahdfuifjkahuhfnjfhurdjnndjhsjk',
@@ -96,58 +100,13 @@ def fri(request, id):
          'rents':rent,
         
        }
+     messages.warning(request, "login to book")
      
      return render(request, 'carrents/form.html', context)
     
     
     
 
-# def fri(request, id): 
-
-#     #get particular brand
-#     rent= Brand.objects.get(id=id) 
-
-
-
-#     #create a brand id base on session
-#     brand_id =request.session.get('brand_id', None)
-
-#      #check if brand exists
-#     if brand_id:
-
-#             #check authentication
-#             if request.user.is_authenticated and request.user.profile:
-#                 rent.customer = request.user.profile
-#                 rent.save()
-#             else:
-#               return redirect('/user/login/?next=/payment/')
-
-#     if request.method == "POST":          
-                
-#                     sname = request.POST['surname']
-#                     fname = request.POST['firstname']
-#                     mname = request.POST['middlename']
-#                     dob = request.POST ['date_of_birth']
-#                     phn = request.POST['phone']
-#                     email= request.POST['email']
-#                     addr = request.POST['address']
-#                     book = request.POST['booking']
-#                     rbook = request.POST ['returnbooking']
-#                     rental= Order.objects.create( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook)
-#                     rental.save()
-#                     #  paymethod = rental.payment_method 
-#                     #  order= rental.id
-#                     #  if paymethod == 'Paystack':
-                             
-#                     return redirect('payment')  
-            
-#     context ={
-                    
-#                 #     #  'form': form,
-#                     'rents':rent
-
-#                 }
-#     return render(request, 'carrents/form.html', context)
 
 
 def reg(request, id):
@@ -159,9 +118,7 @@ def reg(request, id):
 
 def payments(request, id):
     orders = Order.objects.get(id=id)
-    # days = orders.getnumdays 
-    # amount = orders.gettotalamount 
-    messages.success(request, 'rent successful')
+    # messages.success(request, 'rent successful')
     context ={
         'item': orders,
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY

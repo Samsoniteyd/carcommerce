@@ -79,7 +79,7 @@ def loginuser(request):
                 next_url = request.GET.get('next')
                 return redirect(next_url)
             
-            return redirect('index')
+            return redirect('dashboard')
         else:
             messages.warning(request, "invalid user/password.")
             return redirect('login')

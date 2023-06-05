@@ -1,4 +1,4 @@
-from . models import Category,Cartitem
+from . models import Category,CartItem,Cart
 
 
 def categorys(request):
@@ -9,16 +9,19 @@ def categorys(request):
     }
 
 
-def allcarts(request):
+def allcart(request):
     
     if request.session.get('cart_id', None):
-        cart= Cartitem.objects.filter()
+        cart= CartItem.objects.filter()
+
+    #    cart= Cart.objects.get(id=cart_id)
         total = cart.count()
     elif request.user:
-        cart= Cartitem.objects.filter()
-        total = cart.count()
+       cart= CartItem.objects.filter()
+        # cart= Cart.objects.get(id=cart_id)
+       total = cart.count()
         
-        return{
+    return{
             'carts':total
         }
     

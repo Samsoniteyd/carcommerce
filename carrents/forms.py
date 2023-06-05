@@ -9,7 +9,7 @@ class RegForm(forms.ModelForm):
 
         email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
         
-        fields=['surname', 'firstname', 'middlename','address', 'email', 'phone', 'date_of_birth', 'booking', 'returnbooking']
+        fields=['surname', 'firstname', 'middlename','address', 'email', 'phone', 'date_of_birth', 'booking', 'returnbooking', 'payment_method']
         widgets ={
             'surname':forms.TextInput(attrs={'class': 'form-control'}),
             'firstname':forms.TextInput(attrs={'class': 'form-control'}),
@@ -19,5 +19,6 @@ class RegForm(forms.ModelForm):
             'date_of_birth':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
             'booking':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
             'returnbooking':forms.DateInput(attrs={'class': 'form-control','type':'date'}),
+            'payment_method': forms.Select(attrs={'class':'form-control'}),
 
         }

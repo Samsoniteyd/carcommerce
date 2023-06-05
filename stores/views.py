@@ -21,17 +21,16 @@ def index(request):
     category= Category.objects.all().order_by('-created_at')
     product= Product.objects.all().order_by('-created_at')[:6]
     #pagination
-    pagination = Paginator(category, 3)
-    page_number = request.GET.get('page')
-    page_list=pagination.get_page(page_number)
+    # pagination = Paginator(category, 3)
+    # page_number = request.GET.get('page')
+    # page_list=pagination.get_page(page_number)
     context ={
         'sliders': sliders,
         'category': category,
         'product':product,
-        'paginator': page_list
+        # 'paginator': page_list
 
     }
-
     return render(request, 'stores/index.html', context)
 
 
@@ -61,7 +60,7 @@ def category(request, id):
 
  # brands 
 # brands 
-def brands(request):
+def products(request):
         brand= Product.objects.all()
 # pagination 
 # pagination 
@@ -71,10 +70,10 @@ def brands(request):
         page_list = pagination.get_page(page_number)
 
         context={
-            #  'brands': brand,
+             'brands': brand,
              'paginator': page_list
         }
-        return render(request, 'stores/brand.html', context) 
+        return render(request, 'stores/products.html', context) 
 
 def search(request):
      search= request.GET.get('search_word')
@@ -98,7 +97,7 @@ def more(request, id):
 def add_to_cart(request,id):
      #get particular product
 
-     cart_product = Product.objects.get (id=id)
+     cart_product = Product.objects.get(id=id)
       #create a cart id base on session
      cart_id =request.session.get('cart_id', None)
      #check if cart exists
@@ -124,7 +123,7 @@ def add_to_cart(request,id):
                
 
           else:
-               cartproduct = Cartitem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
+               cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
 
                cart_item.total += cart_product.price
 
@@ -136,13 +135,13 @@ def add_to_cart(request,id):
         cart_item = Cart.objects.create(total=0)
         request.session['cart_id'] = cart_item.id
 
-        cartproduct = Cartitem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
+        cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
 
         cart_item.total += cart_product.price
 
         cart_item.save()
         #message anew cart created successfully
-     return redirect('brand')
+     return redirect('products')
  
 
 
@@ -170,7 +169,7 @@ def mycart(request):
 
 def managecart(request, id):
      action = request.GET.get('action')
-     cart_obj = Cartitem.objects.get(id=id)
+     cart_obj = CartItem.objects.get(id=id)
      cart = cart_obj.cart
 
      if action == 'inc':
@@ -217,6 +216,7 @@ def checkout(request):
             form.subtotal = cart_obj.total 
             form.discount = 0
             paymethod = form.payment_method
+            del request.session['cart_id']
             form.save()  
 
             order = form.id
@@ -265,7 +265,6 @@ def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
 
 #      print('Action:', action)
 #      print('productId:', productId)
-
 
 #      customer = request.user.customer
 #      product = product.objects.get(id=productId)
