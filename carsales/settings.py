@@ -33,7 +33,7 @@ SECRET_KEY = str(os.getenv('DUMMY_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['54.253.215.183', 'localhost', '*', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['54.206.249.180', 'localhost', '*', '127.0.0.1:8000']
 
 
 # Application definition
