@@ -12,6 +12,6 @@ urlpatterns=[
     path('managecart/<str:id>/', views.managecart, name='managecart'),
     path('checkout/', views.checkout, name='checkout'),
     path('payment/<str:id>/', views.payment, name='payment'),
-    path('verify-payment/<str:ref>/', views.verify_payment, name='verify-payment'),
+    path('verify-payment/<str:ref>/', views.done_payment, name='verify-payments'),
 #     path('update_item/', views.updateItem, name='update_item')
  ]

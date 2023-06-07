@@ -115,13 +115,13 @@ class Order(models.Model):
     #amount
 
     def amount_value(self)-> int:
-        return self.amount *100     
+        return self.amount * 100     
 
     #verification
 
-    def verify_payment(self):
+    def verify_payments(self):
         paystack = Paystack()
-        status, result = paystack.verify_payment(self.ref, self.amount)
+        status, result = paystack.verify_payments(self.ref, self.amount)
         if status:
             if result['amount']/100 == self.amount:
                 self.payment_complete = True

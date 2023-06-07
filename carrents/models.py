@@ -89,21 +89,63 @@ class Order(models.Model):
     
     def __str__(self):
      return f'{self.order_status}::: {self.id}'
+    
+    # @property
+    # def get_days(self):
+    #     return_booking = pd.to_datetime(self.returnbooking).date()
+    #     booking = pd.to_datetime(self.booking).date()
+    #     diff = return_booking - booking
+    #     self.total_days = diff
+    # @property
+    # def get_amount(self):
+    #     amounts = self.brand.amounts
+    #     amount = (pd.to_datetime(self.returnbooking).date() - pd.to_datetime(self.booking).date()) * amounts
+    #     self.amount = amount
 
-    def save(self,*args, **kwargs):
+    # def save(self, *args, **kwargs):
+    #     # saving days
+    #     self.total_days = 0
+    #     return_booking = pd.to_datetime(self.returnbooking).date()
+    #     booking = pd.to_datetime(self.booking).date()
+    #     diff = return_booking - booking
+    #     self.total_days = diff
+
+    #     # saving amount
+    #     self.amount= 0
+    #     amounts = self.brand.amounts
+    #     amount = int( self.total_days) * amounts
+    #     self.amount = amount
+
+    #     super(Order,self).save(*args, **kwargs)
+        
+
+    def save(self, *args, **kwargs):
+        
+        # saving days
         self.total_days = 0
-        returnbooking = pd.to_datetime(self.returnbooking).date()
-        booking = pd.to_datetime(self.booking).date()
-        self.total_days = np.busday_count(booking,returnbooking)
+        return_booking = self.returnbooking
+        booking = self.booking
+        diff = (return_booking - booking).days
+        self.total_days = diff
 
+      # saving amount
         self.amount= 0
-        amount = self.brand.amounts * int( self.total_days)
+        amounts = self.brand.amounts
+        amount = self.total_days * amounts
         self.amount = amount
 
-        super(Order,self).save(*args, **kwargs)
+        # Ref
+        while not self.ref:
+            ref =secrets.token_urlsafe(50)
+            obj_with_sm_ref = Order.objects.filter(ref=ref)
+            if not obj_with_sm_ref:
+                self.ref = ref
+        
 
-    # def __str__(self) ->str:
-    #     return f'{self.firstname}::: {self.id}:::{self.booking}::::{self.returnbooking}'
+        super().save(*args, **kwargs)
+
+    def __str__(self) ->str:
+        return f'{self.firstname}::: {self.id}:::{self.booking}::::{self.returnbooking}'
 
 #  ref generate
     # def save(self, *args, **kwargs):
@@ -114,28 +156,28 @@ class Order(models.Model):
     #             self.ref = ref
     #     super().save(*args, **kwargs)
 
-    # #amount
+    #amount
 
-    # def amount_value(self)-> int:
-    #     return self.amount * 100     
+    def amount_value(self)-> int:
+        return self.amount * 100     
 
-    #verification
+    # verification
 
-# def verify_payment(self):
-#     paystack = Paystack()
-#     status, result = paystack.verify_payment(self.ref, self.amount)
-#     if status:
-#             if result['total_amount'] / 100 == self.amount:
-#                 self.payment_complete = True
-#                 self.payment_method = 'Payment Received'
-#             else:
-#                 self.payment_method = 'Cancel Payment'
+    def verify_payment(self):
+        paystack = Paystack()
+        status, result = paystack.verify_payment(self.ref, self.amount)
+        if status:
+                if result['amount'] / 100 == self.amount:
+                    self.payment_complete = True
+                    self.payment_method = 'Payment Received'
+                else:
+                    self.payment_method = 'Cancel Payment'
 
 
-#             self.save()
-#     if self.payment_complete:
-#             return True
-#     return False  
+                self.save()
+        if self.payment_complete:
+                return True
+        return False  
 
 
     

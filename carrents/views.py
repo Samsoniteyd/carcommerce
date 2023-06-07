@@ -49,7 +49,7 @@ def rent(request, id):
 
 
 
-def fri(request, id): 
+def fri(request, id):
     #  rent_id = request.session.get('rent_id', None)
     #  rent= Brand.objects.get(id=rent_id)
      rent= Brand.objects.get(id=id)
@@ -78,12 +78,12 @@ def fri(request, id):
              paymethod = form.cleaned_data.get ('payment_method')
              
 
-             form = Order( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook, payment_method=paymethod )
+             form = Order( brand_id=rent.id, surname=sname, firstname=fname, middlename=mname, address=addr, email=email, phone=phn, date_of_birth=dob, booking=book, returnbooking=rbook,payment_method=paymethod )
              form.save()
 
              order = form.id
-            #  if paymethod == "Paystack":
-            #     return redirect('payments', id=order)
+             if paymethod == "Paystack":
+                return redirect('payments', id=order)
              send_mail(
              subject= 'registered',
              message= f'{sname} hgshdgehjsduhsjklajhlahdfuifjkahuhfnjfhurdjnndjhsjk',
@@ -117,6 +117,7 @@ def reg(request, id):
      return render(request, 'carrents/register.html', context)
 
 def payments(request, id):
+    
     orders = Order.objects.get(id=id)
     # messages.success(request, 'rent successful')
     context ={

@@ -245,9 +245,9 @@ def payment(request, id):
     }
     return render(request, 'stores/payment.html', context)
 
-def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
+def done_payment(request:HttpRequest, ref:str)-> HttpResponse:
     payment = get_object_or_404(Order, ref=ref)
-    verified = payment.verify_payment()
+    verified = payment.verify_payments()
 
     if verified:
         messages.success(request, 'verification successful')

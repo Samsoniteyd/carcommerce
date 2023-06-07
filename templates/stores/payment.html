@@ -16,7 +16,7 @@
             <script src="https://js.paystack.co/v1/inline.js"></script>
 
             <div class="d-grid">
-                <button class="btn btn-success"  type="submit" onclick="paymentPaystack()" >pay</button>
+                <button class="btn btn-success"  type="submit" onclick="payment_Paystack()" >pay</button>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
 
 
 <script>
-     function paymentPaystack(){
+     function payment_Paystack(){
         let currency = 'NGN';
         let ref = '{{order.ref}}';
         let obj = {
@@ -37,7 +37,7 @@
             amount: '{{order.amount_value}}',
             ref: ref,
             callback: function(response){
-                window.location.href="{% url 'verify-payment' order.ref %}"
+                window.location.href="{% url 'verify-payments' order.ref %}"
             }
         }
         if(Boolean(currency)){
