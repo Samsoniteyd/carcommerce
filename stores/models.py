@@ -9,6 +9,8 @@ from . paystack import Paystack
 
 class Carousel(models.Model):
     slider = models.ImageField( upload_to='slider')
+    title  = models.CharField(max_length=255,  null=True)
+    sub_title = models.CharField(max_length=255,  null=True)
     created_at= models.DateField(auto_now_add=True )
 
     def __str__(self):
@@ -25,7 +27,14 @@ class Category(models.Model):
     def __str__(self):
         return self.title
     
+class Vendor(models.Model):
+    name = models.CharField(max_length=255,  null=True)
+    image = models.ImageField(upload_to='vendor', null=True)
+    title  = models.CharField(max_length=255,  null=True)
 
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -136,4 +145,21 @@ class Order(models.Model):
         return False                  
     
 
+
+
+
+class Contacts(models.Model):
    
+    First_Name = models.CharField(max_length=225)
+    Last_Name = models.CharField(max_length=225)
+    Mobile = models.CharField(max_length=50)
+    Email = models.EmailField(max_length=225)
+    Subject = models.CharField(max_length=50)
+    Message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+   
+
+
+
+    def __str__(self):
+        return f'{self.First_Name}::: {self.created}'

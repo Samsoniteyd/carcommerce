@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order
+from .models import Order, Contacts
 
 
 
@@ -16,4 +16,22 @@ class CheckoutForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'payment_method': forms.Select(attrs={'class': 'form-control'}),
              
+        }
+
+
+class ConForm(forms.ModelForm):
+    class Meta:
+        model = Contacts
+        fields = ['First_Name', 'Last_Name', 'Mobile', 'Email', 'Subject', 'Message', ]
+
+        widgets= {
+
+            'First_Name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            'Last_Name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            'Mobile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            'Email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            'Subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            'Message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'ENTER'}),
+            # 'Date': forms.DateInput(attrs={'class': 'form-control', 'type':'date'}), 
+
         }

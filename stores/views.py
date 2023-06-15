@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, render,redirect
+from django.core.mail import send_mail
 
 from django.http import JsonResponse
 import json
@@ -12,7 +13,7 @@ from django.core.paginator import Paginator
 
 from django.db.models import Q
 
-from . forms import CheckoutForm
+from . forms import CheckoutForm,ConForm
 # Create your views here.
 
 
@@ -20,6 +21,7 @@ def index(request):
     sliders = Carousel.objects.all()
     category= Category.objects.all().order_by('-created_at')
     product= Product.objects.all().order_by('-created_at')[:6]
+    vendor= Vendor.objects.all()
     #pagination
     # pagination = Paginator(category, 3)
     # page_number = request.GET.get('page')
@@ -28,6 +30,7 @@ def index(request):
         'sliders': sliders,
         'category': category,
         'product':product,
+        'vendor': vendor
         # 'paginator': page_list
 
     }
@@ -65,7 +68,7 @@ def products(request):
 # pagination 
 # pagination 
 
-        pagination= Paginator(brand, 4)
+        pagination= Paginator(brand, 12)
         page_number = request.GET.get('page')
         page_list = pagination.get_page(page_number)
 
@@ -255,7 +258,39 @@ def done_payment(request:HttpRequest, ref:str)-> HttpResponse:
         messages.warning(request, 'verification failed')
     return redirect('dashboard')    
 
+def contact(request):
+     form = ConForm()
+     if request.method == "POST":          
+         form= ConForm(request.POST)
+         if form.is_valid():
+             First_Name = form.cleaned_data.get('First_Name')
+             Last_Name = form.cleaned_data.get('Last_Name')
+             Mobile = form.cleaned_data.get('Mobile')
+             Email = form.cleaned_data.get ('Email')
+             Subject = form.cleaned_data.get('Subject')
+             Message =form.cleaned_data.get('Message')
+             created = form.cleaned_data.get ('created')
+            
+             
 
+             form = Contacts( First_Name=First_Name, Last_Name=Last_Name, Mobile=Mobile, Email=Email, Subject=Subject, Message=Message, created=created)
+             form.save()
+
+            
+             
+             send_mail(
+             subject= 'registered',
+             message= f'{First_Name} hgshdgehjsduhsjklajhlahdfuifjkahuhfnjfhurdjnndjhsjk',
+             from_email= settings.EMAIL_HOST_USER,
+             recipient_list = [Email],
+             fail_silently=False)
+         return redirect('index') 
+
+
+     context= {
+          'form':form
+     }
+     return render(request, 'stores/contact.html', context)
 
 
 # def updateItem(request):

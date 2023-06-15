@@ -19,6 +19,30 @@
     <!-- custom css  -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <!-- aos libary  -->
+    <!-- aos libary  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Ion Icon Fonts-->
+	<link rel="stylesheet" href="css/ionicons.min.css">
+  <!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+<!-- Date Picker -->
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<!-- Flaticons  -->
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+
+
+    
     
 
 <script type="text/javascript">
@@ -43,8 +67,21 @@ const csrftoken = getToken('csrftoken');
 
 </script>
 
+ <!-- Font Awesome -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
 
+
+<!-- swiper  -->
+    <!-- swiper  -->
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+/>
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -85,10 +122,67 @@ const csrftoken = getToken('csrftoken');
     <!-- endmain block  -->
     <!-- endmain block  -->
 
+    
+         <!-- Back to Top -->
+         <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
     <!-- footer  -->
     <!-- footer  -->
     {% include "partials/footer.html" %}
+
+
+<!-- aos libary js  -->
+<!-- aos libary js  -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- swiper js  -->
+    <!-- swiper js  -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!-- Owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/bootstrap-datepicker.js"></script>
+
+
+
+     <!-- JavaScript Libraries -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+     <script src="lib/easing/easing.min.js"></script>
+     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 5,
+      centeredSlides: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    AOS.init();
+  </script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+<script src="js/google_map.js"></script>
+
+ <!-- Template Javascript -->
+ <script src="{% static 'js/main.js' %}"></script>
+
 
     <!-- bootstrap js  -->
     <!-- bootstrap js  -->
