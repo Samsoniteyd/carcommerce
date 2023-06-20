@@ -5,6 +5,74 @@
     /* background-color: rgb(240, 201, 149)!important; */
   
 /* } */ 
+
+
+/* 
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  } */
+
+  #all .slide{
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+     #all .swiper .wrapper .slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    } 
+
+  .autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
+  }
+
+  .autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+  }
+
+
+
+.container-fluid .row .con .text-body{
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
 .container,
 .container-fluid,
 .container-sm,
@@ -30,34 +98,13 @@
   }
 /* store index section  */
 /* store index section  */
-#header-carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.carousel-indicators li {
-    width: 15px;
-    height: 15px;
-    margin: 0 3px 12px 3px;
-    background: transparent;
-    border: 1px solid #FFFFFF;
-    transition: .5s;
-}
-
-.carousel-indicators .active {
-    width: 30px;
-    background: #FFFFFF;
-}
-
-.carousel-caption {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(61, 70, 77, .5);
-    z-index: 1;
-}
+ #all .carousel-inner .carousel-item img{
+    height: 35rem;
+   
+ }
+ /* #all .carousel-inner .carousel-item{
+    
+ } */
 
 .section-title::after {
     position: absolute;
@@ -70,39 +117,9 @@
     z-index: -1;
 }
 
-.product-offer {
-    position: relative;
-    overflow: hidden;
-}
-
-.product-offer img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: .5s;
-}
-
-.product-offer:hover img {
-    transform: scale(1.2) rotate(5deg);
-}
-
-.product-offer .offer-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(61, 70, 77, .5);
-    z-index: 1;
-}
 
 .cat-item {
-    background: #F5F5F5;
+    background: #ffffff;
     transition: .5s;
 }
 
@@ -377,14 +394,22 @@ border-radius: 1rem;
 }
 
 /* rent app  */
+/* rent app  */
+/* rent app  */
 /* rent home section  */
 /* rent home section  */
 
+
+
+#home .carousel-inner .carousel-item img{
+    height: 35rem;
+   
+ }
  #home .card{
     margin-top: 2rem;
     margin-bottom: 2rem;
-    height: 60vh;
-    width: 20vw;
+    height: 100%;
+    width: 100%;
     border-radius: 36px;
 background: linear-gradient(225deg, #fdfafa, #faf8f8);
 box-shadow: 3px 1px 10px #969595;
@@ -397,17 +422,25 @@ box-shadow: 3px 1px 10px #969595;
 }
 
 #home .card img{
-    height: 20vh;
-    width: 20vw;
+    height: 100%;
+    width: 100%;
 } 
+.banner-section{
+    background: url(carsales/static/img/roll.jpg);
+    /* background-color: #4d4c4c; */
+}
+#home .card:hover{
+    box-shadow: none;
+}
 
 /* cars for rent section  */
 /* cars for rent section  */
 
  #car .card{
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    height: 60vh;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    /* padding-bottom: 3rem; */
+    height: 75vh;
     width: 25vw;
     border-radius: 36px;
 background: linear-gradient(225deg, #fdfafa, #faf8f8);
@@ -420,10 +453,16 @@ box-shadow: 3px 1px 10px #000000;
 }
 
 #car .card img{
-    height: 25vh;
-    width: 22vw;
-    margin-top: 1rem;
+    height: 45vh;
+    width: 100%;
+    /* margin-top: 1rem; */
    margin-left: 0rem;
+   padding-bottom: 1rem;
+}
+
+#car .card:hover{
+    /* box-shadow: 3px 1px 10px #b96868; */
+    box-shadow: none;
 }
 
 #car .card .book{
@@ -438,11 +477,47 @@ box-shadow: 3px 1px 10px #000000;
 
 }
 
+@media (min-width: 300px) {
+    #home .container .card{
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+        height: 90%;
+        width: 100%;
+        border-radius: 36px;
+    background: linear-gradient(225deg, #fdfafa, #faf8f8);
+    box-shadow: 3px 1px 10px #969595;
+    }
+    
+    #car .card{
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        /* padding-bottom: 3rem; */
+        height: 75vh;
+        width: 100%;
+        border-radius: 36px;
+    background: linear-gradient(225deg, #fdfafa, #faf8f8);
+    box-shadow: 3px 1px 10px #000000;
+    
+    }
+    
+    
+    #car .card .book{
+        width: 100%;
+        margin: auto;
+        
+        background-color: bisque;
+        border: 0rem;
+        color: black;
+        background: linear-gradient(225deg, bisque, bisque);
+        box-shadow: 3px 1px 10px #969595;
+    
+    
+    }
+    
+    }
 
-#home{
-    /* border: 2px solid blue;  */
-    /* background-color: rgba(255, 178, 63, 0.959); */
-} 
+
+
 
 
 

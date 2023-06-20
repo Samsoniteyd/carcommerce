@@ -10,6 +10,18 @@ import secrets
 from . paystack import Paystack
 # Create your models here.
 
+
+
+
+class Slide(models.Model):
+    slider = models.ImageField( upload_to='slider')
+    title  = models.CharField(max_length=255, blank=True, null=True)
+    sub_title = models.CharField(max_length=255,  blank=True, null=True)
+    created_at= models.DateField(auto_now_add=True )
+
+    def __str__(self):
+        return str(self.created_at)
+
 class Rentage(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='rentage', null=True)
@@ -28,7 +40,7 @@ FUEL= (
 class Brand(models.Model):
     category =  models.ForeignKey(Rentage, on_delete=models.CASCADE)
    
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True )
     image = models.ImageField(upload_to='brand', null=True)
     description = models.TextField( max_length=255)
     discount = models.PositiveIntegerField( null=True, default=0, blank=True )
@@ -36,7 +48,7 @@ class Brand(models.Model):
     inventory  = models.PositiveIntegerField()
     created_at  = models.DateField( auto_now_add= True)
     fuel = models.CharField(max_length=50, choices=FUEL, null=True)
-    capacity = models.CharField(max_length=50, null=True)
+    capacity = models.CharField(max_length=50, null=True, blank=True )
     
 
 

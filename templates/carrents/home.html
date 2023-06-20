@@ -4,12 +4,60 @@
 {% block title %}
   home page
 {% endblock title %}
-
-
 {% block content %}
 
+ <!-- Breadcrumb Start -->
+ <div class="container-fluid">
+  <div class="row px-xl-5">
+      <div class="col-12">
+          <nav class="breadcrumb bg-light mb-30">
+              <a class="breadcrumb-item text-dark" href="{% url 'home' %}">Home</a>
+              <!-- <a class="breadcrumb-item text-dark" href="#">Shop</a> -->
+          </nav>
+      </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
 <section id="home">
+
+
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% if cara %}
+      {% for slid  in cara %}
+      <div class="carousel-item   active ">
+        <img src="{{slid.slider.url}}" class="d-block w-100" alt="cars">
+        <div class="carousel-caption d-none d-md-block align-items-center justify-content-center">
+          <h2 class="display-4 text-white mb-3 animate__animated  animate__fadeInDown  text-primary">MOTEXLUX RENT</h2>
+          <h3 class="mx-md-5 px-5  animate__animated animate__bounceIn  text-primary"></h3>
+          <h5 class="mx-md-5 px-5 animate__animated  animate__bounceIn  text-primary "></h5>
+          <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp text-primary" href="#">RENT</a>
+        </div>
+       
+      </div>
+
+     
+      {% endfor %}
+        
+      {% else %}
+        
+      {% endif %}
+      
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
     <div class="container mt-5">
+        <H2 class="text-center">Categories of cars for rent</H2>
         <div class="row">
         {% if cat %}
         {% for item in cat %}
@@ -17,13 +65,19 @@
             <div class="col-md-4">
                 <a href="{% url 'rent' item.id %}" class="text-decoration-none" >
                     <div class="card">
-                        <div class="card-header text-center"> {{item.title}} </div>
+                        <div class="card-header text-center"> <H3>{{item.title}}</H3> </div>
                         <div class="card-body">
                             <img  class="img-fluid card-img d-flex" src="{{item.image.url}}" alt="">
                         </div>
-                        <div class="card-footer">
-                            <h3>Enjoy your choice</h3>
-                        </div>
+                        
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                            </div>
+                       
                     </div>
                 </a>
             </div>
@@ -38,6 +92,8 @@
 </section>
   
 {% endblock content %}
+
+
 
 
 

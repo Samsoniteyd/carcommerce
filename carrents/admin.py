@@ -8,4 +8,5 @@ from . models import *
 admin.site.register(Rentage)
 admin.site.register(Brand)
 admin.site.register(Order)
+admin.site.register(Slide)
 

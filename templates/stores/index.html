@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static%}
-
+{% load humanize  %}
 {% block title %}
 index page
 {% endblock title %}
@@ -34,18 +34,146 @@ animate_ZoomIn
 {% endif %}
 " -->
 
-<section id="all">
+<section id="all" class="bg-light">
 
- <!-- Carousel Start -->
- <div class="container-fluid mb-3">
+
+
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% if sliders %}
+      {% for slid  in sliders %}
+      <div class="carousel-item {% if forloop.counter0 == 0 %}  active {% endif %} ">
+        <img src="{{slid.slider.url}}" class="d-block w-100" alt="cars">
+        <div class="carousel-caption d-none d-md-block align-items-center justify-content-center">
+          <h2 class="display-4 text-white mb-3 animate__animated {% if forilop.counter0 == 0 %} animate__fadeInDown {% endif %} text-primary">MOTEXLUX CARS</h2>
+          <h3 class="mx-md-5 px-5 {% if forilop.counter == 1 %} animate__animated animate__bounceIn {% endif %} text-primary">{{slid.title}}</h3>
+          <h5 class="mx-md-5 px-5 animate__animated {% if forilop.counter == 2 %} animate__bounceIn {% endif %} text-primary ">{{slid.sub_title}}</h5>
+          <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp text-primary" href="{% url 'products' %}">Shop Now</a>
+        </div>
+       
+      </div>
+
+     
+      {% endfor %}
+        
+      {% else %}
+        
+      {% endif %}
+      
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+  <!-- <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 1"></button>
+ 
+
+    </div>
+    <div class="carousel-inner">
+       {% if sliders %}
+        {% for slid in sliders  %}
+        <div class="carousel-item active">
+        <img src=" {{slid.slider.url}}" class="d-block w-100 h-50" alt="cars">
+        </div>              
+        {% endfor %}
+        
+       {% else %}
+       
+        <p class="lead bg-danger">no slider at the moment</p>
+       {% endif %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> -->
+
+
+
+  
+<!-- 
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    {% if sliders %}
+    {% for slid in sliders %}
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="30000">
+        <img src="{{slid.slider.url}}" class="d-block w-100" alt="...">
+      </div>
+     
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+    {% endfor %}
+      
+    {% else %}
+      
+    {% endif %} -->
+    
+  
+
+
+
+
+
+
+
+<!--   
+
+  <div class="swiper mySwiper">
+    {% if sliders %}
+    {% for slid in sliders  %}
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src=" {{slid.slider.url}}" class="" alt="cars">
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    
+    {% endfor %}
+      
+    {% else %}
+    <p class="lead bg-danger">no slider at the moment</p>
+    {% endif %}
+    
+    
+  </div>  -->
+
+
+
+
+ <!-- <div class="container-fluid mb-3">
   <div class="row px-xl-5">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
           <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
-              <ol class="carousel-indicators">
-                  <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#header-carousel" data-slide-to="1"></li>
-                  <li data-target="#header-carousel" data-slide-to="2"></li>
-              </ol>
+              <ul class="carousel-indicators">
+                  <li data-target="#header-carousel" data-slide-to="" class="active"></li>
+                  <li data-target="#header-carousel" data-slide-to=""></li>
+                  <li data-target="#header-carousel" data-slide-to=""></li>
+              </ul>
               <div class="carousel-inner">
                 {% if sliders  %}
                 {% for slid in sliders  %}
@@ -70,65 +198,66 @@ animate_ZoomIn
                  
               </div>
           </div>
-      </div>
+      </div> -->
+      <!-- {% if offer %}
+      {% for tro in offer  %}
       <div class="col-lg-4">
-          <div class="product-offer mb-30" style="height: 200px;">
-              <img class="img-fluid" src="img/offer-1.jpg" alt="">
-              <div class="offer-text">
-                  <h6 class="text-white text-uppercase">Save 20%</h6>
-                  <h3 class="text-white mb-3">Special Offer</h3>
-                  <a href="" class="btn btn-primary">Shop Now</a>
-              </div>
-          </div>
-          <div class="product-offer mb-30" style="height: 200px;">
-              <img class="img-fluid" src="img/offer-2.jpg" alt="">
-              <div class="offer-text">
-                  <h6 class="text-white text-uppercase">Save 20%</h6>
-                  <h3 class="text-white mb-3">Special Offer</h3>
-                  <a href="" class="btn btn-primary">Shop Now</a>
-              </div>
-          </div>
-      </div>
+        <div class="product-offer mb-30" style="height: 200px; ">
+            <img class="img-fluid" src="{{tro.image.url}}" alt="{{tro.title}}">
+            <div class="offer-text">
+                <h6 class="text-white text-uppercase">Save 20%</h6>
+                <h3 class="text-white mb-3">Special Offer</h3>
+                <a href="{% url 'addtocart' tro.id %}" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+      {% endfor %}
+        
+      {% else %}
+        <p>no product</p>
+      {% endif %} -->
+      
+    
+      <!-- </div>
   </div>
-</div>
-<!-- Carousel End -->
+ </div> -->
+ <!-- Carousel End -->
 
 
 
 
-<!-- Featured Start -->
-<div class="container-fluid pt-5">
+ <!-- Featured Start -->
+ <div class="container-fluid pt-5 ">
   <div class="row px-xl-5 pb-3">
       <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-          <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+          <div class="d-flex align-items-center  mb-4 bg-white" style="padding: 30px;">
               <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
               <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
           </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-          <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
+          <div class="d-flex align-items-center mb-4 bg-white" style="padding: 30px;">
               <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
               <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
           </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-          <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
+          <div class="d-flex align-items-center  mb-4 bg-white" style="padding: 30px;">
               <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
               <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
           </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-          <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1 ">
+          <div class="d-flex align-items-center  mb-4 bg-white" style="padding: 30px;">
               <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
               <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
           </div>
       </div>
   </div>
-</div>
-<!-- Featured End -->
+ </div>
+ <!-- Featured End -->
 
 
-<!-- Categories Start  -->
+ <!-- Categories Start  -->
 
 
     <div class="container-fluid pt-5">
@@ -172,7 +301,7 @@ animate_ZoomIn
                 <div class="cars w-100 ">
                 <img src=" {{pro.image.url}} " alt=" {{pro.title}} " class="img-fluid">
               </div>
-              <!-- <h5 class="text-center"> {{pro.title |title}} </h5>  -->
+               <h5 class="text-center"> {{pro.title |title}} </h5>  -->
             <!-- </a>
           </div>
           {% endfor %}
@@ -187,10 +316,10 @@ animate_ZoomIn
       
           </div>
         </div>
-      </section> --> -->
+      </section> -->
 
      <!-- Products Start -->
-     <div class="container-fluid pt-5 pb-3">
+     <div class="container-fluid pt-5 pb-3 bg-light">
       <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Latest Cars</span></h2>
       <div class="row px-xl-5">
         {% if product %}
@@ -212,7 +341,8 @@ animate_ZoomIn
                 <div class="text-center py-4">
                     <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        <h5>&#8358;{{pro.price|intcomma}}</h5>
+                        <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <small class="fa fa-star text-primary mr-1"></small>
@@ -231,11 +361,11 @@ animate_ZoomIn
         <p class="lead p-3 bg-danger text-white">no product</p>
         {% endif %}
         <div class="brief d-grid my-5">
-            <a href="{% url 'products' %}" class="btn btn-success">view all products</a>
+            <a href="{% url 'products' %}" class="btn btn-primary">view all products</a>
         </div>  
             
-  </div>
-  </section>
+   </div>
+</section>
   <!-- Products End -->
 <!-- 
   <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -297,11 +427,11 @@ animate_ZoomIn
 
 
   <!-- Offer Start -->
-  <div class="container-fluid pt-5 pb-3">
+  <!-- <div class="container-fluid pt-5 pb-3 bg-light">
     <div class="row px-xl-5">
         <div class="col-md-6">
             <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/offer-1.jpg" alt="">
+                <img class="img-fluid" src="" alt="">
                 <div class="offer-text">
                     <h6 class="text-white text-uppercase">Save 20%</h6>
                     <h3 class="text-white mb-3">Special Offer</h3>
@@ -311,7 +441,7 @@ animate_ZoomIn
         </div>
         <div class="col-md-6">
             <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/offer-2.jpg" alt="">
+                <img class="img-fluid" src="" alt="">
                 <div class="offer-text">
                     <h6 class="text-white text-uppercase">Save 20%</h6>
                     <h3 class="text-white mb-3">Special Offer</h3>
@@ -320,12 +450,12 @@ animate_ZoomIn
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Offer End -->
  
 
  <!-- Vendor Start -->
- <div class="container-fluid py-5">
+ <!-- <div class="container-fluid py-5 bg-light">
     <div class="row px-xl-5">
         {% if vendor %}
           {% for ven in vendor  %}
@@ -344,7 +474,7 @@ animate_ZoomIn
         
         
     </div>
-</div>
+</div> -->
 <!-- Vendor End -->
 
 
@@ -411,9 +541,9 @@ animate_ZoomIn
             <div class="cars w-100 ">
             <img src=" {{pro.image.url}} " alt=" {{pro.title}} " class="img-fluid">
           </div>
-          <!-- <h5 class="text-center"> {{pro.title |title}} </h5>  -->
-        </a>
-      </div>
+           <h5 class="text-center"> {{pro.title |title}} </h5>  -->
+        <!-- </a>
+      </div> -->
       <!-- {% endfor %}
       
       {% else %} 
@@ -426,7 +556,7 @@ animate_ZoomIn
   
       </div>
     </div>
-  </section> --> -->
+  </section> --> 
 
 <!-- <section id="advantage" class="py-4" >
         <div class="royal">
@@ -488,7 +618,7 @@ animate_ZoomIn
   </div>
 </section> -->
 
-<section id="test" class="py-4">
+<!-- <section id="test" class="py-4">
   <div class="testmonial">
     <div class="container">
       <div class="row">
@@ -497,8 +627,8 @@ animate_ZoomIn
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </div> -->
+<!-- </section> -->
  
 
 {% endblock content %}

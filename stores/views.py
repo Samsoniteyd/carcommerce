@@ -21,6 +21,7 @@ def index(request):
     sliders = Carousel.objects.all()
     category= Category.objects.all().order_by('-created_at')
     product= Product.objects.all().order_by('-created_at')[:6]
+    offer= Product.objects.all().order_by('-created_at')[:2]
     vendor= Vendor.objects.all()
     #pagination
     # pagination = Paginator(category, 3)
@@ -30,7 +31,8 @@ def index(request):
         'sliders': sliders,
         'category': category,
         'product':product,
-        'vendor': vendor
+        'vendor': vendor,
+        'offer': offer
         # 'paginator': page_list
 
     }

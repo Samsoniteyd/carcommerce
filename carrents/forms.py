@@ -11,8 +11,8 @@ class RegForm(forms.ModelForm):
         
         fields=['surname', 'firstname', 'middlename','address', 'email', 'phone', 'date_of_birth', 'booking', 'returnbooking','payment_method']
         widgets ={
-            'surname':forms.TextInput(attrs={'class': 'form-control'}),
-            'firstname':forms.TextInput(attrs={'class': 'form-control'}),
+            'surname':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SURNAME'}),
+            'firstname':forms.TextInput(attrs={'class': 'form-control','placeholder': 'FIRSTNAME'}),
             'middlename':forms.TextInput(attrs={'class': 'form-control'}),
             'address':forms.TextInput(attrs={'class': 'form-control'}),
             'phone':forms.TextInput(attrs={'class': 'form-control'}),

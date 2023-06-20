@@ -3,11 +3,11 @@
 <div class="container-fluid sticky-top">
   <div class="row bg-secondary py-1 px-xl-5">
       <div class="col-lg-6 d-none d-lg-block">
-          <div class="d-inline-flex align-items-center h-100">
-              <a class="text-body mr-3" href="">About</a>
-              <a class="text-body mr-3" href="">Contact</a>
-              <a class="text-body mr-3" href="">Help</a>
-              <a class="text-body mr-3" href="">FAQs</a>
+          <div class=" con d-inline-flex align-items-center h-100 text-decoration-none">
+              <a class="text-body ml-3" href="">About</a>
+              <a class="text-body ml-3" href="{% url 'contact' %}">Contact</a>
+              <a class="text-body ml-3" href="">Help</a>
+              <a class="text-body ml-3" href="">FAQs</a>
           </div>
       </div>
       <div class="col-lg-6 text-center text-lg-right">
@@ -35,7 +35,7 @@
           
       </div>
   </div>
-  <div class="row align-items-center ">
+  <div class="row align-items-center  bg-light">
       <div class="col-lg-4">
           <a href="" class="text-decoration-none">
               <span class="h1 text-uppercase text-secondary bg-dark px-2">MOTEX</span>
@@ -71,6 +71,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'home' %}">RENT</a>
                 </li>
+
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     CATEGORY

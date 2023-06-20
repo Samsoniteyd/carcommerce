@@ -27,8 +27,10 @@ from . models import *
 
 def home(request):
      cat= Rentage.objects.all()
+     carousel= Slide.objects.all()
      context ={
-          'cat': cat
+          'cat': cat,
+          "cara": carousel
      }
      return render(request, 'carrents/home.html', context)
 
@@ -37,9 +39,12 @@ def rent(request, id):
 
     rent = Brand.objects.all().filter(category_id=id)
     category = Rentage.objects.get(id=id)
+    
+
     context = {
         'rent': rent,
-        'cat': category
+        'cat': category,
+       
     }
 
 
@@ -56,8 +61,8 @@ def fri(request, id):
      if request.user.is_authenticated and request.user.profile:
        rent.customer = request.user.profile
        rent.save()
-     else:
-       return redirect('/user/login/?next=/payments/')
+    #  else:
+    #    return redirect('/user/login/?next=/payments/')
 
     #  else:
     #   return redirect('/users/login/?next=/form/')
@@ -100,7 +105,7 @@ def fri(request, id):
          'rents':rent,
         
        }
-     messages.warning(request, "login to book")
+    #  messages.warning(request, "login to book")
      
      return render(request, 'carrents/form.html', context)
     
