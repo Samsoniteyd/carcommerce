@@ -34,7 +34,7 @@ SECRET_KEY = str(os.getenv('DUMMY_KEY'))
 DEBUG = False
 # DEBUG = True
 
-ALLOWED_HOSTS = ['52.64.206.172', 'localhost', '*', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['', 'localhost', '*', '127.0.0.1:8000']
 
 
 # Application definition
