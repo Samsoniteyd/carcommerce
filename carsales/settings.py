@@ -141,7 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # MEDIA 
 
 MEDIA_URL= 'image/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'image')
 
 
 #Email conf
