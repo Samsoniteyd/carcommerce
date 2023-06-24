@@ -31,8 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('DUMMY_KEY'))  
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['13.211.175.148', 'localhost', '*', '127.0.0.1:8000']
 
@@ -140,8 +140,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # MEDIA 
 # MEDIA 
 
-MEDIA_URL= 'image/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'image')
+MEDIA_URL= '/image/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'image')
 
 
 #Email conf
