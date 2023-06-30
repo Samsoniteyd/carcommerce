@@ -88,10 +88,9 @@ def fri(request, id):
 
              order = form.id
              if paymethod == "Paystack":
-                return redirect('payments', id=order)
-             send_mail(
+               send_mail(
              subject= 'registered',
-             message= f'{sname} hgshdgehjsduhsjklajhlahdfuifjkahuhfnjfhurdjnndjhsjk',
+             message= f'{sname} your request has been seen it would be processed shortly',
              from_email= settings.EMAIL_HOST_USER,
              recipient_list = [email],
              fail_silently=False)

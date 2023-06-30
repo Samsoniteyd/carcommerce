@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from . forms import CreateProfile, UpdateProfile
 from django.contrib.auth.models import User
-
+from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib.auth import login,logout,authenticate
 
 from django.contrib.auth.decorators import login_required
@@ -48,6 +49,13 @@ def register(request):
             if 'next' in request.GET:
                 next_url = request.GET.get('next')
                 return redirect(next_url)
+            
+            send_mail(
+             subject= 'registered',
+             message= f'{username} you have successfully registered',
+             from_email= settings.EMAIL_HOST_USER,
+             recipient_list = [email],
+             fail_silently=False)
  
             return redirect('login')
  

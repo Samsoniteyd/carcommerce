@@ -14,9 +14,9 @@
   <div class="row px-xl-5">
       <div class="col-12">
           <nav class="breadcrumb bg-light mb-30">
-              <a class="breadcrumb-item text-dark" href="#">Home</a>
-              <a class="breadcrumb-item text-dark" href="#">Shop</a>
-              <span class="breadcrumb-item active">Shopping Cart</span>
+              <a class="breadcrumb-item text-dark" href="{% url 'index' %}">Home</a>
+              <a class="breadcrumb-item text-dark" href="#">cart</a>
+              <!-- <span class="breadcrumb-item active">Shopping Cart</span> -->
           </nav>
       </div>
   </div>
@@ -103,7 +103,7 @@
             </div>
         </div>
           {% else %}
-            <p class="lead bg-danger p-3 text-white">n</p>
+            <p class="lead bg-danger p-3 text-white">NO ORDER AT THE MOMENT PLEASE GO BACK AND MAKE ORDER</p>
           {% endif %}
            
         </div>

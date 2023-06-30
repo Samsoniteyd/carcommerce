@@ -13,7 +13,8 @@ urlpatterns=[
     path('checkout/', views.checkout, name='checkout'),
     path('payment/<str:id>/', views.payment, name='payment'),
     path('verify-payment/<str:ref>/', views.done_payment, name='verify-payments'),
-    path('contact', views.contact, name='contact')
-#     path('update_item/', views.updateItem, name='update_item')
+    path('contact', views.contact, name='contact'),
+    path('about', views.about, name='about')
+#   path('update_item/', views.updateItem, name='update_item')
  ]
  

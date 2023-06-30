@@ -294,6 +294,9 @@ def contact(request):
      }
      return render(request, 'stores/contact.html', context)
 
+def about (request):
+     return render(request, "stores/about.html",)
+
 
 # def updateItem(request):
 #      data = json.loads(request.data)
