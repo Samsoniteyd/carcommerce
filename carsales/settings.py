@@ -31,8 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('DUMMY_KEY'))  
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
-# DEBUG = True  
+# DEBUG = False 
+DEBUG = True  
 
 ALLOWED_HOSTS = ['13.211.175.148', 'localhost', '*', '127.0.0.1:8000']
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
     'carrents.apps.CarrentsConfig',
+    'phonenumber_field',
     # 'carrents.booking_functions'
 ]
 

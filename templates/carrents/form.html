@@ -116,6 +116,11 @@
                         <form action="" method="post" class="bg-light">
                             {% csrf_token %} 
                             {{form.as_p}}
+                            <!-- <div class="field">
+                                <div class="control">
+                                    {{form.email}}
+                                </div>
+                            </div> -->
         
                             <div class="d-grid my-3">
                                 <button type="submit" class="btn btn-primary">Proceed To Payment</button>
