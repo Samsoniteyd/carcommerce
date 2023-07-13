@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'stores.apps.StoresConfig',
     'carrents.apps.CarrentsConfig',
-    'phonenumber_field',
     # 'carrents.booking_functions'
 ]
 
