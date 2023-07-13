@@ -85,7 +85,7 @@ class Order(models.Model):
     middlename = models.CharField(max_length=255, null=True)
     address  = models.TextField()
     email= models.EmailField(max_length=255)
-    phone = models.IntegerField( null=True)
+    phone = models.IntegerField(blank=False, null=True)
     order_status = models.CharField(max_length=255, choices=ORDER_STATUS, default='pending')
     date_of_birth = models.DateField(blank=False, null=True)
     booking = models.DateField(blank=False, null=True)

@@ -17,7 +17,7 @@ class RegForm(forms.ModelForm):
             # 'email': forms.EmailField(attrs={'class': 'form-control', 'type':'email'}),
             'address':forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class':'form-control'}),
-            'phone':forms.TextInput(attrs={'class': 'form-control', 'type':'tel' }),
+            'phone':forms.NumberInput(attrs={'class': 'form-control', 'type':'number' }),
             'date_of_birth':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
             'booking':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
             'returnbooking':forms.DateInput(attrs={'class': 'form-control','type':'date'}),
