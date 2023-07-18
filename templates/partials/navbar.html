@@ -1,10 +1,10 @@
 <!-- Topbar Start -->
 <!-- Topbar Start -->
 <div class="container-fluid sticky-top">
-  <div class="row bg-secondary py-1 px-xl-5">
+  <div class="row bg-secondary ">
       <div class="col-lg-6 d-none d-lg-block">
-          <div class=" con d-inline-flex align-items-center h-100 text-decoration-none">
-              <a class="text-body ml-3" href="{% url 'about' %}">About</a>
+          <div class=" con  ">
+              <a class="text-body mr-3" href="{% url 'about' %}">About</a>
               <a class="text-body ml-3" href="{% url 'contact' %}">Contact</a>
               <a class="text-body ml-3" href="">Help</a>
               <a class="text-body ml-3" href="">FAQs</a>
@@ -75,13 +75,13 @@
             </li>
         </ul>             
           
-        
+        <!-- search  -->
         <div class="search ">
           <form action="{% url 'search' %}" method="get">
             {% csrf_token %}
             <div class="input-group">
               <input type="text"  name="search_word" class="form-control" placeholder="search......">
-              <span class="input-group-text"> <i class="bi bi-search"></i> </span>
+              <span class="input-group-text" id="basic-addon2">  <button type="submit"><i class="bi bi-search"></i></button></span>
             </div>
           </form>
         </div>

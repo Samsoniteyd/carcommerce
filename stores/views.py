@@ -54,13 +54,13 @@ def category(request, id):
 
 # product 
 # product 
-# def product(request, id):
-#     products = Product.objects.get(id=id)
-#     context={
-#         'product': products     
+def product(request, id):
+    products = Product.objects.get(id=id)
+    context={
+        'product': products     
 
-#     }
-#     return render(request, 'stores/product.html', context)
+    }
+    return render(request, 'stores/product.html', context)
 
 
  # brands 

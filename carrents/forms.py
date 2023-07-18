@@ -3,7 +3,7 @@ from django import forms
 from .models import Order
 
 
-class RegForm(forms.ModelForm):
+class RegForm(forms.ModelForm):  
     class Meta:
         model = Order
 
@@ -19,8 +19,8 @@ class RegForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'phone':forms.NumberInput(attrs={'class': 'form-control', 'type':'number' }),
             'date_of_birth':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
-            'booking':forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
-            'returnbooking':forms.DateInput(attrs={'class': 'form-control','type':'date'}),
+            'booking':forms.DateInput(attrs={'class': 'form-control', 'type':'date', 'label':'Your name'}),
+            'returnbooking':forms.DateInput(attrs={'class': 'form-control','type':'date', 'label':'Your name'}),
             # 'total_days':forms.DateInput(attrs={'class': 'form-control','type':'hidden'}),
             # 'amount':forms.DateInput(attrs={'class': 'form-control','type':'hidden'}),
             'payment_method': forms.Select(attrs={'class':'form-control'}),

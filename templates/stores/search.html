@@ -21,16 +21,15 @@
 
 <section id="search" class="my-3 ">    
     <div class="container">
-        <div class="row g-2"> 
+        <div class="row px-xl-5 pb-3 pt-5"> 
             {% if search %}
                 {% for item in search %}
-                <div class="col-md-4">
-                    <a href="{% url 'product' item.id %}" class="text-center text-decoration-none text-dark">
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <a href="{% url 'product' item.id  %}" class="text-center text-decoration-none text-dark">
 
                         <div class="card">
                             <img src="{{item.image.url}}"   height="250" alt="{{item.title}}" class="card-img">
-                            <div class="card-body">
-                                <h5 class="display-6">{{item.title}}</h5>
+                             <h5 class="display-6">{{item.title}}</h5>
                             <p class="lead"> {{item.description| truncatewords:20}} </p>
                             <h4> &#8358; {{item.price}} </h4>
                         </div>
