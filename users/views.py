@@ -101,7 +101,8 @@ def logoutuser(request):
     messages.success(request, "logout successfull.")
     return redirect('login')
 
-@login_required(login_url=('login'))
+
+# @login_required(login_url=('login'))
 def dashboard(request):
     user = request.user.profile
 
@@ -118,7 +119,7 @@ def dashboard(request):
 # update page
 
 
-@login_required(login_url=('login'))
+# @login_required(login_url=('login'))
 
 def update_profile(request):
     user = request.user.profile
