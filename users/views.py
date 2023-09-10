@@ -7,6 +7,7 @@ from django.contrib.auth import login,logout,authenticate
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import EmailMessage
 # Create your views here.
 
 
@@ -44,20 +45,32 @@ def register(request):
             forms= forms.save(commit=False)      
             forms.user = user
             forms.save()
-            messages.success(request, "Registration successfull.")
 
             if 'next' in request.GET:
                 next_url = request.GET.get('next')
                 return redirect(next_url)
             
+
+            # email = EmailMessage(
+            # subject= 'registered',
+            # message= f'{username} you have successfully registered',
+            # from_email= settings.EMAIL_HOST_USER,
+            # recipient_list = [email],
+            # fail_silently=False)
+            # email.send()
+
             send_mail(
-             subject= 'registered',
-             message= f'{username} you have successfully registered',
-             from_email= settings.EMAIL_HOST_USER,
-             recipient_list = [email],
-             fail_silently=False)
- 
-            return redirect('login')
+            subject= 'registered',
+            message= f'{username} you have successfully registered',
+            from_email= settings.EMAIL_HOST_USER,
+            recipient_list = [email],
+            fail_silently=False,
+            )
+
+            messages.success(request, "Registration successfull.")
+
+
+        return redirect('login')
  
     context={
         'form': form
@@ -119,7 +132,7 @@ def dashboard(request):
 # update page
 
 
-# @login_required(login_url=('login'))
+@login_required(login_url=('login'))
 
 def update_profile(request):
     user = request.user.profile
