@@ -50,15 +50,6 @@ def register(request):
                 next_url = request.GET.get('next')
                 return redirect(next_url)
             
-
-            # email = EmailMessage(
-            # subject= 'registered',
-            # message= f'{username} you have successfully registered',
-            # from_email= settings.EMAIL_HOST_USER,
-            # recipient_list = [email],
-            # fail_silently=False)
-            # email.send()
-
             send_mail(
             subject= 'registered',
             message= f'{username} you have successfully registered',
