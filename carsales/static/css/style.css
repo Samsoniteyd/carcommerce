@@ -439,12 +439,12 @@ box-shadow: 3px 1px 10px #969595;
  #car .card{
     margin-top: 1rem;
     margin-bottom: 2rem;
-    /* padding-bottom: 3rem; */
-    height: 75vh;
-    width: 25vw;
-    border-radius: 36px;
-background: linear-gradient(225deg, #fdfafa, #faf8f8);
-box-shadow: 3px 1px 10px #000000;
+    padding-bottom: 3rem; 
+    /* height: 75vh; 
+       width: 25vw; */
+    /* border-radius: 36px; */
+    background: linear-gradient(225deg, #fdfafa, #faf8f8);
+    box-shadow: 3px 1px 10px #000000;
 
 }
 
@@ -453,15 +453,15 @@ box-shadow: 3px 1px 10px #000000;
 }
 
 #car .card img{
-    height: 45vh;
+     height: 45vh;
     width: 100%;
-    /* margin-top: 1rem; */
+    margin-top: 1rem; 
    margin-left: 0rem;
    padding-bottom: 1rem;
 }
 
 #car .card:hover{
-    /* box-shadow: 3px 1px 10px #b96868; */
+     box-shadow: 3px 1px 10px #b96868; 
     box-shadow: none;
 }
 
