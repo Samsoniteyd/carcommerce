@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'stores.context_processors.categorys',
                 'stores.context_processors.allcart',
+                'stores.context_processors.wish',
             ],
         },
     },

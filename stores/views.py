@@ -147,6 +147,15 @@ def add_to_cart(request,id):
         cart_item.save()
         #message anew cart created successfully
      return redirect('products')
+
+def add_to_wish(request,id):
+      #get particular product
+
+     cart_product = Product.objects.get(id=id)
+      #create a cart id base on session
+     cart_id =request.session.get('cart_id', None)
+     #check if cart exists
+     return 
  
 
 

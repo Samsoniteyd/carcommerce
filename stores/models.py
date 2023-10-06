@@ -63,6 +63,17 @@ class Cart(models.Model):
     def __str__(self):
         return f'Cart:::: {str(self.total)}'
     
+class WishlistItem(models.Model):
+    customer = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True )
+    total = models.PositiveIntegerField( default=0)
+    created_at = models.DateField(auto_now_add=True)
+
+     
+     
+
+    def __str__(self):
+        return f'Cart:::: {self.customer}----{str(self.total)}'
+    
 
 class CartItem(models.Model):
     cart= models.ForeignKey(Cart, on_delete=models.CASCADE)

@@ -25,3 +25,17 @@ def allcart(request):
             'carts':total
         }
     
+def wish(request):
+    if request.session.get('cart_id', None):
+        listwish=CartItem.objects.filter()
+
+        total= listwish.count()
+    elif request.user:
+        listwish=CartItem.objects.filter()
+
+        total= listwish.count()
+
+    return{
+        "like":total
+    }
+
