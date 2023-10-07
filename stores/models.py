@@ -37,13 +37,14 @@ class Vendor(models.Model):
         return self.name
 
 class Product(models.Model):
+    category =  models.ForeignKey(Category, on_delete=models.CASCADE)
+    Vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, null=True, blank=True )
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='product', null=True)
     description = models.TextField( max_length=255)
     inventory  = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=9, decimal_places=2)
     model = models.PositiveIntegerField()
-    category =  models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at  = models.DateField( auto_now_add= True)
 
 

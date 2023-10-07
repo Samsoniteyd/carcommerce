@@ -1,4 +1,4 @@
-from . models import Category,CartItem,Cart
+from . models import Category,CartItem,WishlistItem
 
 
 def categorys(request):
@@ -26,12 +26,12 @@ def allcart(request):
         }
     
 def wish(request):
-    if request.session.get('cart_id', None):
-        listwish=CartItem.objects.filter()
+    if request.session.get('wish_id', None):
+        listwish=WishlistItem.objects.filter()
 
         total= listwish.count()
     elif request.user:
-        listwish=CartItem.objects.filter()
+        listwish=WishlistItem.objects.filter()
 
         total= listwish.count()
 
