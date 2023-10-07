@@ -151,13 +151,48 @@ def add_to_cart(request,id):
 def add_to_wish(request,id):
       #get particular product
 
-     cart_product = Product.objects.get(id=id)
+     wish_product = Product.objects.get(id=id)
       #create a cart id base on session
-     cart_id =request.session.get('cart_id', None)
-     #check if cart exists
-     return 
+     wish_id =request.session.get('wish_id', None)
+     
+
+     wish_item= WishlistItem.objects.get(id=wish_id)
+
+        #   check for authentication 
+     if request.user.is_authenticated and request.user.profile:
+              wish_item.customer = request.user.profile
+              wish_item.save()
+
+     else:
+          wish_item= WishlistItem.objects.create(total=0)
+          request.session['wish_id']= wish_item.id
+          wishproduct = CartItem.objects.create(cart=wish_item, product=wish_product, quantity=1, subtotal=wish_product)
+          wish_item.total += wishproduct
+          wish_item.save()
+
+          return redirect('products') 
  
 
+
+def wish(request):
+     #session
+    wish_id = request.session.get('wish_id', None)
+
+    if wish_id:
+          # getting the available cart
+        wish_item = get_object_or_404(WishlistItem, id=wish_id)#  Cart.objects.get(id=cart_id)
+        #check authentication
+        if request.user.is_authenticated and request.user.profile:
+              wish_item.customer = request.user.profile
+              wish_item.save()
+    else:
+          wish_item= None     
+
+    context = {
+         'wishes': wish_item  
+    }      
+          
+    return render(request, 'stores/wish.html', context)
 
 def mycart(request):
      #session
