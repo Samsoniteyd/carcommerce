@@ -7,7 +7,8 @@ from django.contrib.auth import login,logout,authenticate
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.mail import EmailMessage
+# from django.core.mail import EmailMessage
+from carsales.settings import EMAIL_HOST_USER
 # Create your views here.
 
 
