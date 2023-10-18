@@ -9,6 +9,6 @@ urlpatterns=[
     path('register/<str:id>/', views.reg, name='register'),
     path('payments/<str:id>/', views.payments, name='payments'),
     path('verify-payment/<str:ref>/', views.verify_payment, name='verify-payment'),
-    path('booking_list/', views.booking_list, name='booking_list')
+    path('takes/', views.takes, name='takes')
     
 ] 

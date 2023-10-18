@@ -324,12 +324,13 @@ def contact(request):
 
             
              
-             send_mail(
-             subject= 'registered',
-             message= f'{First_Name} we are happy to provide good services',
-             from_email= settings.EMAIL_HOST_USER,
-             recipient_list = [Email],
-             fail_silently=False)
+            #  send_mail(
+            #  subject= 'registered',
+            #  message= f'{First_Name} we are happy to provide good services',
+            #  from_email= settings.EMAIL_HOST_USER,
+            #  recipient_list = [Email],
+            #  fail_silently=False)
+             messages.success(request, 'message sent successful')
          return redirect('index') 
 
 

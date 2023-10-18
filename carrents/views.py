@@ -88,13 +88,13 @@ def fri(request, id):
 
              order = form.id
              if paymethod == "Paystack":
-               send_mail(
-             subject= 'registered',
-             message= f'{sname} your request has been seen it would be processed shortly',
-             from_email= settings.EMAIL_HOST_USER,
-             recipient_list = [email],
-             fail_silently=False)
-         return redirect('payments', id=order) 
+            #    send_mail(
+            #  subject= 'registered',
+            #  message= f'{sname} your request has been seen it would be processed shortly',
+            #  from_email= settings.EMAIL_HOST_USER,
+            #  recipient_list = [email],
+            #  fail_silently=False)
+              return redirect('payments', id=order) 
             
                
                
@@ -135,14 +135,14 @@ def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
     verified = payment.verify_payment()
 
     if verified:
-        messages.success(request, 'verification successful')
-    else:
         messages.warning(request, 'verification failed')
-    return redirect('dashboard')    
+    else:
+        messages.success(request, 'verification successful')
+    return redirect('takes')    
 
 
-def booking_list(request):
-    return
+def takes(request):
+    return render(request, 'carrents/takes.html')
 
 
 
