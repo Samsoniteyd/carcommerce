@@ -304,6 +304,7 @@ def done_payment(request:HttpRequest, ref:str)-> HttpResponse:
         messages.warning(request, 'verification failed')
     return redirect('dashboard')    
 
+
 def contact(request):
      form = ConForm()
      if request.method == "POST":          

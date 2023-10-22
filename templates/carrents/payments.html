@@ -53,7 +53,7 @@
            amount: '{{item.amount}}',
            ref: ref,
            callback: function(response){
-               window.location.href="{% url 'verify-payment' item.ref %}"
+               window.location.href="{% url 'flow_payment' item.ref %}"
            }
        }
        if(Boolean(currency)){

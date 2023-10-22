@@ -8,7 +8,7 @@ urlpatterns=[
     path('form/<str:id>/', views.fri, name='form'),
     path('register/<str:id>/', views.reg, name='register'),
     path('payments/<str:id>/', views.payments, name='payments'),
-    path('verify-payment/<str:ref>/', views.verify_payment, name='verify-payment'),
+    path('flow_payment/<str:ref>/', views.flow_payment, name='flow_payment'),
     path('takes/', views.takes, name='takes')
     
 ] 

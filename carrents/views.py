@@ -130,15 +130,15 @@ def payments(request, id):
     }
     return render(request, 'carrents/payments.html', context)
 
-def verify_payment(request:HttpRequest, ref:str)-> HttpResponse:
+def flow_payment(request:HttpRequest, ref:str)-> HttpResponse:
     payment = get_object_or_404(Order, ref=ref)
     verified = payment.verify_payment()
 
     if verified:
-        messages.warning(request, 'verification failed')
-    else:
         messages.success(request, 'verification successful')
-    return redirect('takes')    
+    else:
+        messages.warning(request, 'verification failed')
+    return redirect('dashboard')    
 
 
 def takes(request):
