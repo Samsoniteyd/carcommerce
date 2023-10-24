@@ -185,7 +185,6 @@ class Order(models.Model):
                 else:
                     self.payment_method = 'Cancel Payment'
 
-
                 self.save()
         if self.payment_complete:
                 return True

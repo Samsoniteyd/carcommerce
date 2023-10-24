@@ -135,9 +135,9 @@ def flow_payment(request:HttpRequest, ref:str)-> HttpResponse:
     verified = payment.verify_payment()
 
     if verified:
-        messages.success(request, 'verification successful')
-    else:
         messages.warning(request, 'verification failed')
+    else:
+        messages.success(request, 'verification successful')
     return redirect('dashboard')    
 
 
