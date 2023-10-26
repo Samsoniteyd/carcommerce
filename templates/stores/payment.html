@@ -52,7 +52,7 @@
             amount: '{{order.amount_value}}',
             ref: ref,
             callback: function(response){
-                window.location.href="{% url 'done_payment' order.ref %}"
+                window.location.href="{% url 'verify_payments' order.ref %}"
             }
         }
         if(Boolean(currency)){

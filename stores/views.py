@@ -108,16 +108,16 @@ def add_to_cart(request,id):
      #check if cart exists
      if cart_id:
         #   getting the available cart 
-          cart_item= Cart.objects.get(id=cart_id)
+        cart_item = get_object_or_404(Cart, id=cart_id)# Cart.objects.get(id=cart_id)
 
           #check authentication
-          if request.user.is_authenticated and request.user.profile:
+        if request.user.is_authenticated and request.user.profile:
               cart_item.customer = request.user.profile
               cart_item.save()
      
         #  check if product exist in cart  
-          this_product_in_cart = cart_item.cartitem_set.filter(product= cart_product) #child to parent relationship
-          if this_product_in_cart.exists():
+        this_product_in_cart = cart_item.cartitem_set.filter(product= cart_product) #child to parent relationship
+        if this_product_in_cart.exists():
                cartproduct= this_product_in_cart.last()
                cartproduct.quantity +=1
                cartproduct.subtotal += cart_product.price
@@ -127,7 +127,7 @@ def add_to_cart(request,id):
                 #message item/product increased in cart successfully  
                
 
-          else:
+        else:
                cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
 
                cart_item.total += cart_product.price
@@ -294,7 +294,7 @@ def payment(request, id):
     }
     return render(request, 'stores/payment.html', context)
 
-def done_payment(request:HttpRequest, ref:str)-> HttpResponse:
+def verify_payments(request:HttpRequest, ref:str)-> HttpResponse:
     payment = get_object_or_404(Order, ref=ref)
     verified = payment.verify_payments()
 
