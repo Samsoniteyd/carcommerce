@@ -144,7 +144,7 @@ class Order(models.Model):
         paystack = Paystack()
         status, result = paystack.verify_payments(self.ref, self.amount)
         if status:
-            if result['amount']/100 == self.amount:
+            if result['amount'] / 100 == self.amount:
                 self.payment_complete = True
                 self.payment_method = 'Payment Received'
             else:

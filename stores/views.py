@@ -128,7 +128,7 @@ def add_to_cart(request,id):
                
 
         else:
-               cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
+               cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity= 1, subtotal=cart_product.price )
 
                cart_item.total += cart_product.price
 
@@ -140,7 +140,7 @@ def add_to_cart(request,id):
         cart_item = Cart.objects.create(total=0)
         request.session['cart_id'] = cart_item.id
 
-        cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity=1, subtotal=cart_product.price )
+        cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity= 1, subtotal=cart_product.price )
 
         cart_item.total += cart_product.price
 
@@ -275,6 +275,7 @@ def checkout(request):
             # elif paymethod == 'Trnasfer':
             #     return redirect('trpayment', id=order)
                 
+                 
 
     context= {
         'form':form,
