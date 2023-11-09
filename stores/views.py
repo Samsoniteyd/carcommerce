@@ -97,102 +97,47 @@ def more(request, id):
     return render(request, 'stores/more.html', context)     
 
 
-#add to cart
-
+# add to cart
 def add_to_cart(request,id):
-     #get particular product
+    # get the particular product to cart
+    cart_product = Product.objects.get(id=id)
+    # create a cart id base on session
+    cart_id = request.session.get('cart_id',None)
+    # check if cart exists
+    if cart_id:
+        # getting the available cart
+        cart_item =get_object_or_404(Cart, id=cart_id)# Cart.objects.get(id=cart_id)
 
-     cart_product = Product.objects.get(id=id)
-      #create a cart id base on session
-     cart_id =request.session.get('cart_id', None)
-     #check if cart exists
-     if cart_id:
-        #   getting the available cart 
-        cart_item = get_object_or_404(Cart, id=cart_id)# Cart.objects.get(id=cart_id)
-
-          #check authentication
+        # check authentication
         if request.user.is_authenticated and request.user.profile:
-              cart_item.customer = request.user.profile
-              cart_item.save()
-     
-        #  check if product exist in cart  
-        this_product_in_cart = cart_item.cartitem_set.filter(product= cart_product) #child to parent relationship
+            cart_item.customer = request.user.profile
+            cart_item.save()
+
+        # check if product exist in cart
+        this_product_in_cart = cart_item.cartitem_set.filter(product = cart_product) #child to parent relationship 
+        
         if this_product_in_cart.exists():
-               cartproduct= this_product_in_cart.last()
-               cartproduct.quantity +=1
-               cartproduct.subtotal += cart_product.price
-               cartproduct.save()
-               cart_item.total += cart_product.price
-               cart_item.save()
-                #message item/product increased in cart successfully  
-               
-
+            cartproduct = this_product_in_cart.last()
+            cartproduct.quantity +=1
+            cartproduct.subtotal += cart_product.price
+            cartproduct.save()
+            cart_item.total += cart_product.price
+            cart_item.save()
+            # message item/product increased in cart successful
         else:
-               cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity= 1, subtotal=cart_product.price )
+            cartproduct = CartItem.objects.create(cart = cart_item, product = cart_product, quantity = 1, subtotal = cart_product.price )
+            cart_item.total += cart_product.price
+            cart_item.save()
+            # message a new item/product created successfully
 
-               cart_item.total += cart_product.price
-
-               cart_item.save() 
-               #message a new product has been created successfully  
-
-
-     else:
+    else:
         cart_item = Cart.objects.create(total=0)
         request.session['cart_id'] = cart_item.id
-
-        cartproduct = CartItem.objects.create(cart=cart_item, product=cart_product, quantity= 1, subtotal=cart_product.price )
-
+        cartproduct = CartItem.objects.create(cart = cart_item, product = cart_product, quantity = 1, subtotal = cart_product.price )
         cart_item.total += cart_product.price
-
         cart_item.save()
-        #message anew cart created successfully
-     return redirect('products')
-
-def add_to_wish(request,id):
-      #get particular product
-
-     wish_product = Product.objects.get(id=id)
-      #create a cart id base on session
-     wish_id =request.session.get('wish_id', None)
-     
-
-     wish_item= WishlistItem.objects.get(id=wish_id)
-
-        #   check for authentication 
-     if request.user.is_authenticated and request.user.profile:
-              wish_item.customer = request.user.profile
-              wish_item.save()
-
-     else:
-          wish_item= WishlistItem.objects.create(total=0)
-          request.session['wish_id']= wish_item.id
-          wishproduct = CartItem.objects.create(cart=wish_item, product=wish_product, quantity=1, subtotal=wish_product)
-          wish_item.total += wishproduct
-          wish_item.save()
-
-          return redirect('products') 
- 
-
-
-def wish(request):
-     #session
-    wish_id = request.session.get('wish_id', None)
-
-    if wish_id:
-          # getting the available cart
-        wish_item = get_object_or_404(WishlistItem, id=wish_id)#  Cart.objects.get(id=cart_id)
-        #check authentication
-        if request.user.is_authenticated and request.user.profile:
-              wish_item.customer = request.user.profile
-              wish_item.save()
-    else:
-          wish_item= None     
-
-    context = {
-         'wishes': wish_item  
-    }      
-          
-    return render(request, 'stores/wish.html', context)
+        # message a new cart created successfully
+    return redirect('products')
 
 def mycart(request):
      #session
