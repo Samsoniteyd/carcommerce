@@ -98,7 +98,7 @@ ORDER_STATUS=(
 
 PAYMENT_METHOD=(
     ('Paystack','Paystack'),
-    ('Transfer', 'Transfer')
+    # ('Transfer', 'Transfer')
 )
  
     
