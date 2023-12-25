@@ -65,7 +65,7 @@ class Cart(models.Model):
         return f'Cart:::: {str(self.total)}'
     
 class WishlistItem(models.Model):
-    customer = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True )
+    customer = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True )
     total = models.PositiveIntegerField( default=0)
     created_at = models.DateField(auto_now_add=True)
 
